@@ -1,42 +1,26 @@
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
+.eslintcache
+.cache
 .classpath
-.factorypath
-.project
+.java-version
+.idea/*
+!.idea/vcs.xml
+!.idea/icon.png
+.vscode
+.cursor
+.metadata
 .settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-# Compiled class file
+.project
+.mvn/wrapper/*.jar
+.mvn/maven.config
+target
+tmp
 *.class
-
-# Log file
+*.iml
+*.jar
+*.zip
 *.log
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+.DS_Store
+*.ipr
+*.iws
 hs_err_pid*
 replay_pid*

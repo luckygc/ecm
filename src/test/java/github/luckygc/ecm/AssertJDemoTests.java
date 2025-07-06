@@ -17,13 +17,15 @@
 
 package github.luckygc.ecm;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootApplication
-public class EcmApplication {
+import org.junit.jupiter.api.Test;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+public class AssertJDemoTests {
+
+    @Test
+    void test() {
+        String str = "hello";
+        assertThat(str).hasSize(5).startsWith("h").isEqualTo("hello");
     }
 }
