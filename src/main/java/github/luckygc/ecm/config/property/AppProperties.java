@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.config.property;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+@Data
+@Component
+@ConfigurationProperties(prefix = "app")
+public class AppProperties {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    private String snowflakeWorkerId = "0";
 }

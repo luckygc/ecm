@@ -15,16 +15,20 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.annotation.hibernate;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import github.luckygc.ecm.util.id.IdentifierGeneratorImpl;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
-}
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import org.hibernate.annotations.IdGeneratorType;
+
+@IdGeneratorType(IdentifierGeneratorImpl.class)
+@Target({METHOD, FIELD})
+@Retention(RUNTIME)
+public @interface SnowflakeId {}

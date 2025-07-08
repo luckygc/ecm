@@ -15,16 +15,37 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.domain.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import jakarta.data.page.Page;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import java.util.List;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+import lombok.Data;
+
+@Data
+public class PageDTO<T> {
+
+    List<T> content;
+
+    private long totalElements;
+
+    private long totalPages;
+
+    public PageDTO() {
+        // 无参构造器
+    }
+
+    public PageDTO(Page<T> pageResponse) {
+        this.content = pageResponse.content();
+
+        if (pageResponse.hasTotals()) {
+            this.totalElements = pageResponse.totalElements();
+            this.totalPages = pageResponse.totalPages();
+        }
+    }
+
+    public static <T> PageDTO<T> of(Page<T> pageResponse) {
+        return new PageDTO<>(pageResponse);
     }
 }

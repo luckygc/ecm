@@ -15,16 +15,11 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.constant;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+public interface UserErrorCode {
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+    String USER_NOT_FOUND = "user_not_found";
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    String USER_ALREADY_EXISTS = "user_already_exists";
 }

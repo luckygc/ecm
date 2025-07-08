@@ -15,16 +15,23 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.storage.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.util.List;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+/** 存储服务接口 支持本地存储、S3协议 */
+public interface StorageManager {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    String uploadFile(Path filePath) throws IOException;
+
+    InputStream downloadFile(String objectName) throws IOException;
+
+    void deleteFile(String objectName) throws IOException;
+
+    boolean fileExists(String objectName) throws IOException;
+
+    List<String> listFiles(String prefix) throws IOException;
 }

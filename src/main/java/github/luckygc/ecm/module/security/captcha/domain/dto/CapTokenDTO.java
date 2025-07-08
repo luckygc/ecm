@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.security.captcha.domain.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+public record CapTokenDTO(boolean success, String message, String token, Long expires) {
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+    public static CapTokenDTO error(String message) {
+        return new CapTokenDTO(false, message, null, null);
+    }
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+    public static CapTokenDTO ok(String token, long expires) {
+        return new CapTokenDTO(true, null, token, expires);
     }
 }

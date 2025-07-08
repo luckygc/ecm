@@ -15,16 +15,17 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.metadata.logical.domain.entity;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.common.domain.entity.BaseEntity;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+@Entity
+@Table(name = "record_property")
+public class RecordProperty extends BaseEntity {
+    private String name;
+    private String description;
+    private String type;
 }

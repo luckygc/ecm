@@ -15,16 +15,29 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.security.captcha.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+@Data
+@Component
+@ConfigurationProperties(prefix = "app.security.cap")
+public class CapProperties {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    /** 生成的挑战数量 */
+    private int challengeCount = 50;
+
+    /** 每条挑战的长度 */
+    private int challengeSize = 32;
+
+    /** 挑战难度 */
+    private int challengeDifficulty = 4;
+
+    /** 挑战过期时间，秒 */
+    private long challengeExpireMs = 5 * 60 * 1000;
+
+    /** token过期时间，秒 */
+    private long tokenExpireMs = 2 * 60 * 1000;
 }

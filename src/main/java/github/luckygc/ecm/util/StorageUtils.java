@@ -15,16 +15,20 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.util;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+public class StorageUtils {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+    private static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
+    private StorageUtils() {}
+
+    public static String generateObjectName(Long uniqueSequence, String filename) {
+        String datePath = LocalDate.now().format(DATE_FORMATTER);
+        return datePath + "/" + uniqueSequence + "/" + filename;
     }
 }

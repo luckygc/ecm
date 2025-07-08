@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.util;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+public class TimeUtils {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+    private TimeUtils() {}
+
+    public static long toTimestamp(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

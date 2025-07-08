@@ -15,16 +15,22 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.constant;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+public interface GeneralErrorCode {
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+    /** 未知错误 */
+    String UNKNOWN_ERROR = "unknown_error";
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    /** 资源未找到 */
+    String RESOURCE_NOT_FOUND = "resource_not_found";
+
+    /** 参数校验失败 */
+    String ARGUMENT_NOT_VALID = "argument_not_valid";
+
+    /** 请求方法不支持 */
+    String HTTP_METHOD_NOT_ALLOWED = "http_method_not_allowed";
+
+    /** 服务调用失败 */
+    String BUSINESS_ERROR = "business_error";
 }

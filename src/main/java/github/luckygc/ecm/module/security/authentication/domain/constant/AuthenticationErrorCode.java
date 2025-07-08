@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.security.authentication.domain.constant;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+public interface AuthenticationErrorCode {
+    String AUTHENTICATION_FAILED = "authentication_failed";
+    String INVALID_CREDENTIALS = "invalid_credentials";
+    String ACCOUNT_DISABLED = "account_disabled";
+    String ACCOUNT_LOCKED = "account_locked";
+    String ACCOUNT_EXPIRED = "account_expired";
+    String CREDENTIALS_EXPIRED = "credentials_expired";
+    String LOGIN_REQUIRED = "login_required";
+    String INVALID_REQUEST_FORMAT = "invalid_request_format";
 }

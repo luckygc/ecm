@@ -15,16 +15,23 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.util;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import java.util.function.Function;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+public class EnumUtils {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+    private EnumUtils() {}
+
+    public static <T extends Enum<T>, C> T fromCode(
+            C code, Class<T> enumClass, Function<T, C> codeExtractor) {
+        T[] enumConstants = enumClass.getEnumConstants();
+        for (T enumConstant : enumConstants) {
+            C enumCode = codeExtractor.apply(enumConstant);
+            if (enumCode.equals(code)) {
+                return enumConstant;
+            }
+        }
+        return null;
     }
 }

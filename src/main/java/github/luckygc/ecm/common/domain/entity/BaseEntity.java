@@ -15,16 +15,30 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.domain.entity;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+import java.time.LocalDateTime;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+@Getter
+@Setter
+@Accessors(chain = true)
+@MappedSuperclass
+public abstract class BaseEntity {
+
+    @Id @SnowflakeId private Long id;
+
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
 }

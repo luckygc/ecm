@@ -15,16 +15,11 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.security.captcha.domain;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
-}
+/**
+ * @param c Number of challenges
+ * @param s Size of each challenge
+ * @param d Difficulty level
+ */
+public record Challenge(int c, int s, int d) {}

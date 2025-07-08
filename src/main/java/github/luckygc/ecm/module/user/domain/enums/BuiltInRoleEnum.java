@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.domain.enums;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+@Getter
+@RequiredArgsConstructor
+public enum BuiltInRoleEnum {
+    ROOT("root", "超级管理员");
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    private final String code;
+    private final String label;
 }

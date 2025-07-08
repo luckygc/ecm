@@ -15,16 +15,30 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.domain.enums;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import jakarta.persistence.EnumeratedValue;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+/** 用户状态枚举 */
+@Getter
+@RequiredArgsConstructor
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+public enum UserStatus {
+
+    /** 启用 */
+    ENABLED("enabled", "启用"),
+
+    /** 禁用 */
+    DISABLED("disabled", "禁用"),
+
+    /** 锁定 */
+    LOCKED("locked", "锁定");
+
+    @EnumeratedValue private final String code;
+
+    private final String label;
 }

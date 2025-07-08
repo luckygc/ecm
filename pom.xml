@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.7</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>github.luckygc</groupId>
 	<artifactId>ecm</artifactId>
@@ -21,6 +21,13 @@
 			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
+
+	<developers>
+		<developer>
+			<name>luckygc</name>
+			<email>gc_main@outlook.com</email>
+		</developer>
+	</developers>
 
 	<repositories>
 		<repository>
@@ -43,6 +50,20 @@
 		<spotless.version>2.44.5</spotless.version>
 		<jspecify.version>1.0.0</jspecify.version>
 		<checkstyle.version>10.18.2</checkstyle.version>
+		<jakarta.data.version>1.0.1</jakarta.data.version>
+		<!--	jitpack 打包后3.2.0在idea被识别为3.1.0，手动指定	-->
+		<jakarta.persistence.version>3.2.0</jakarta.persistence.version>
+		<hibernate.version>7.0.5.Final</hibernate.version>
+		<jakarta-data-spring.version>1.1.0</jakarta-data-spring.version>
+		<mybatis-spring-boot-starter.version>3.0.4</mybatis-spring-boot-starter.version>
+		<mybatis-dynamic-sql.version>1.5.2</mybatis-dynamic-sql.version>
+		<commons-lang3.version>3.17.0</commons-lang3.version>
+		<commons-codec.version>1.17.2</commons-codec.version>
+		<commons-collections4.version>4.5.0</commons-collections4.version>
+		<guava.version>33.4.8-jre</guava.version>
+		<awssdk-s3.version>2.31.54</awssdk-s3.version>
+		<lombok.version>1.18.36</lombok.version>
+		<mapstruct.version>1.6.3</mapstruct.version>
 	</properties>
 
 	<dependencies>
@@ -62,9 +83,56 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+			<version>${spring-session.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-jdbc</artifactId>
+			<version>${spring-session.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>${jakarta.persistence.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.luckygc</groupId>
+			<artifactId>jakarta-data-spring</artifactId>
+			<version>${jakarta-data-spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${commons-collections4.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>s3</artifactId>
+			<version>${awssdk-s3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+			<version>5.5.0</version>
 		</dependency>
 
 		<dependency>
@@ -111,6 +179,18 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-processor</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -124,6 +204,7 @@
 			<groupId>com.puppycrawl.tools</groupId>
 			<artifactId>checkstyle</artifactId>
 			<version>${checkstyle.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -194,6 +275,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.0</version>
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
@@ -204,13 +286,33 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+						<path>
+							<groupId>org.hibernate.orm</groupId>
+							<artifactId>hibernate-processor</artifactId>
+							<version>${hibernate.version}</version>
+						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<mainClass>github.luckygc.EcmApplication</mainClass>
+					<executable>true</executable>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -218,6 +320,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

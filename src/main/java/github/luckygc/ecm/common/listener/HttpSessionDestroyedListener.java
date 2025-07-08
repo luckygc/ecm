@@ -15,16 +15,18 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.listener;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationListener;
+import org.springframework.security.web.session.HttpSessionDestroyedEvent;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+@Slf4j
+public class HttpSessionDestroyedListener
+        implements ApplicationListener<HttpSessionDestroyedEvent> {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+    @Override
+    public void onApplicationEvent(HttpSessionDestroyedEvent event) {
+        log.info("==会话销毁==，{}", event.getSecurityContexts());
     }
 }

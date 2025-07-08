@@ -15,16 +15,27 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.common.exception;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.common.constant.GeneralErrorCode;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import java.io.Serial;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+import lombok.Getter;
+
+public class BusinessException extends RuntimeException {
+
+    @Serial private static final long serialVersionUID = 1L;
+
+    @Getter private final String code;
+
+    public BusinessException(String message) {
+        super(message);
+        this.code = GeneralErrorCode.BUSINESS_ERROR;
+    }
+
+    public BusinessException(String code, String message) {
+        super(message);
+        this.code = code;
     }
 }

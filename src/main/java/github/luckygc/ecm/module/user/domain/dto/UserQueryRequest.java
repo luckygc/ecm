@@ -15,16 +15,34 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.domain.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.module.user.domain.enums.UserStatus;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import lombok.Data;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+/** 用户查询请求DTO */
+@Data
+public class UserQueryRequest {
+
+    /** 用户名（模糊查询） */
+    private String username;
+
+    /** 姓名（模糊查询） */
+    private String fullName;
+
+    /** 邮箱（模糊查询） */
+    private String email;
+
+    /** 手机号（精确查询） */
+    private String mobile;
+
+    /** 用户状态 */
+    private UserStatus status;
+
+    /** 页码（从0开始） */
+    private int page = 0;
+
+    /** 每页大小 */
+    private int size = 20;
 }

@@ -15,16 +15,12 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.metadata.logical.repository;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.module.metadata.logical.domain.entity.RecordProperty;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import jakarta.data.repository.CrudRepository;
+import jakarta.data.repository.Repository;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
-}
+@Repository
+public interface RecordPropertyRepository extends CrudRepository<RecordProperty, Long> {}

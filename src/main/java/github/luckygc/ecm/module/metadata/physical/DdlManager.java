@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.metadata.physical;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.module.metadata.logical.domain.entity.RecordEntity;
+import github.luckygc.ecm.module.metadata.logical.domain.entity.RecordProperty;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+public interface DdlManager {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    void createTable(RecordEntity recordEntity);
+
+    void dropTable(RecordEntity recordEntity);
+
+    void addColumn(RecordEntity recordEntity, RecordProperty recordProperty);
 }

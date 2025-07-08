@@ -15,16 +15,42 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.domain.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.module.user.domain.enums.UserStatus;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import java.time.LocalDateTime;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+import lombok.Data;
+
+/** 用户响应DTO 用于返回用户信息，不包含敏感数据如密码 */
+@Data
+public class UserDetailDTO {
+
+    /** 用户ID */
+    private Long id;
+
+    /** 用户名 */
+    private String username;
+
+    /** 姓名 */
+    private String fullName;
+
+    /** 邮箱 */
+    private String email;
+
+    /** 手机号 */
+    private String mobile;
+
+    /** 用户状态（中文描述） */
+    private UserStatus status;
+
+    /** 最后登录时间 */
+    private LocalDateTime lastLoginTime;
+
+    /** 最后登录IP */
+    private String lastLoginIp;
+
+    /** 创建时间 */
+    private LocalDateTime createTime;
 }

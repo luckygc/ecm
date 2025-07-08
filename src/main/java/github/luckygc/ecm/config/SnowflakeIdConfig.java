@@ -15,16 +15,25 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.util.id.SnowflakeIdGenerator;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
+@Configuration
+public class SnowflakeIdConfig {
+
+    /** 机器ID,0-31 */
+    @Value("${app.snowflake.worker-id:0}")
+    private Integer workerId;
+
+    @Bean
+    public SnowflakeIdGenerator snowflakeIdGenerator() {
+        SnowflakeIdGenerator generator = new SnowflakeIdGenerator(workerId);
+        SnowflakeIdGenerator.setInstance(generator);
+        return generator;
     }
 }

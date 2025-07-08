@@ -15,16 +15,29 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.domain.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import lombok.Data;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+/** 登录响应DTO */
+@Data
+public class LoginResponseDTO {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+    /** 是否成功 */
+    private boolean success;
+
+    /** 响应消息 */
+    private String message;
+
+    /** 用户ID */
+    private String userId;
+
+    /** 用户名 */
+    private String username;
+
+    /** 用户全名 */
+    private String fullName;
+
+    /** 会话ID */
+    private String sessionId;
 }

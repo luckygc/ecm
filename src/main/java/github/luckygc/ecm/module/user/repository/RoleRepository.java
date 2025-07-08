@@ -15,16 +15,26 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.user.repository;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.module.user.domain.entity.RoleEntity;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import jakarta.data.repository.CrudRepository;
+import jakarta.data.repository.Find;
+import jakarta.data.repository.Repository;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+import java.util.Optional;
+
+/** 角色仓库接口 */
+@Repository
+public interface RoleRepository extends CrudRepository<RoleEntity, Long> {
+
+    /**
+     * 根据角色编码查找角色
+     *
+     * @param code 角色编码
+     * @return 角色实体
+     */
+    @Find
+    Optional<RoleEntity> findByCode(String code);
 }

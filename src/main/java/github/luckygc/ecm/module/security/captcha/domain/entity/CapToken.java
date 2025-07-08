@@ -15,16 +15,28 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm;
+package github.luckygc.ecm.module.security.captcha.domain.entity;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import github.luckygc.ecm.common.domain.entity.BaseEntity;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class EcmApplication {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 
-    public static void main(String[] args) {
-        SpringApplication.run(EcmApplication.class, args);
-    }
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Table(
+        name = "cap_token",
+        indexes = {
+            @Index(name = "uk_cap_token_token", columnList = "token", unique = true),
+            @Index(name = "idx_cap_token_expire_time", columnList = "expire_time")
+        })
+@Entity
+@Data
+@Accessors(chain = true)
+public class CapToken extends BaseEntity {
+
+    private String token;
+    private Long expires;
 }
