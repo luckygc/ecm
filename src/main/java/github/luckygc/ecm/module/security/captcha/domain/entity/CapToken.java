@@ -30,7 +30,7 @@ import lombok.experimental.Accessors;
         name = "cap_token",
         indexes = {
             @Index(name = "uk_cap_token_token", columnList = "token", unique = true),
-            @Index(name = "idx_cap_token_expire_time", columnList = "expire_time")
+            @Index(name = "idx_cap_token_expires", columnList = "expires")
         })
 @Entity
 @Data

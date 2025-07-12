@@ -27,6 +27,7 @@ import jakarta.persistence.Table;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -34,7 +35,7 @@ import org.hibernate.type.SqlTypes;
         name = "cap_challenge_data",
         indexes = {
             @Index(name = "uk_cap_challenge_data_token", columnList = "token", unique = true),
-            @Index(name = "idx_cap_challenge_data_expire_time", columnList = "expire_time")
+            @Index(name = "idx_cap_challenge_data_expires", columnList = "expires")
         })
 @Entity
 @Accessors(chain = true)
