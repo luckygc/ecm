@@ -17,22 +17,23 @@
 
 package github.luckygc.ecm.config;
 
+import github.luckygc.ecm.config.property.AppProperties;
 import github.luckygc.ecm.util.id.SnowflakeIdGenerator;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 public class SnowflakeIdConfig {
 
-    /** 机器ID,0-31 */
-    @Value("${app.snowflake.worker-id:0}")
-    private Integer workerId;
+    private final AppProperties appProperties;
 
     @Bean
     public SnowflakeIdGenerator snowflakeIdGenerator() {
-        SnowflakeIdGenerator generator = new SnowflakeIdGenerator(workerId);
+        SnowflakeIdGenerator generator = new SnowflakeIdGenerator(appProperties.getNumber());
         SnowflakeIdGenerator.setInstance(generator);
         return generator;
     }

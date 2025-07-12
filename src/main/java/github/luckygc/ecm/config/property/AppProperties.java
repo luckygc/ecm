@@ -18,6 +18,7 @@
 package github.luckygc.ecm.config.property;
 
 import lombok.Data;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -26,5 +27,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app")
 public class AppProperties {
 
-    private String snowflakeWorkerId = "0";
+    /** 应用id */
+    private String id;
+
+    /** 应用序号,基于0 */
+    private long number = 0;
 }
