@@ -130,12 +130,7 @@
 			<artifactId>s3</artifactId>
 			<version>${awssdk-s3.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.hazelcast</groupId>
-			<artifactId>hazelcast</artifactId>
-			<version>5.5.0</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.jspecify</groupId>
 			<artifactId>jspecify</artifactId>
