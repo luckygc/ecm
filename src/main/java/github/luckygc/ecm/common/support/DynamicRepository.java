@@ -28,8 +28,8 @@ import org.hibernate.query.restriction.Restriction;
 public interface DynamicRepository<T> {
 
     @Find
-    Page<T> findBy(Restriction<T> restriction, PageRequest pageRequest, Order<T> sortBy);
+    Page<T> findAll(Restriction<T> restriction, PageRequest pageRequest, Order<T> sortBy);
 
     @Delete
-    long deleteBy(Restriction<T> restriction);
+    long deleteAll(Restriction<T> restriction);
 }
