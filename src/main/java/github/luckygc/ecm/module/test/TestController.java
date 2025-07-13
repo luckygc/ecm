@@ -49,10 +49,9 @@ public class TestController {
         UserRepository userRepository = beanFactory.getBean(UserRepository.class);
 
         Restriction<UserEntity> restriction =
-                idGreaterThan(0L).and(Restriction.startsWith(UserEntity_.username, "a"));
+                idGreaterThan(0L).and(Restriction.notNull(UserEntity_.username));
 
-        Page<UserEntity> userEntityPage =
-                userRepository.findByDynamicCondition(restriction, pageRequest, order);
+        Page<UserEntity> userEntityPage = userRepository.findAll(restriction, pageRequest, order);
         return Result.ok(userEntityPage);
     }
 
