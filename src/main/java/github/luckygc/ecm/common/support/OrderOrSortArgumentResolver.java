@@ -17,12 +17,11 @@
 
 package github.luckygc.ecm.common.support;
 
+import com.google.common.collect.Lists;
+
 import jakarta.data.Order;
 import jakarta.data.Sort;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
 import org.apache.commons.collections4.ListUtils;
 import org.jspecify.annotations.NonNull;
 import org.springframework.core.MethodParameter;
@@ -31,6 +30,8 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+
+import java.util.List;
 
 /** Jakarta Data Order或Sort参数解析器 */
 public class OrderOrSortArgumentResolver implements HandlerMethodArgumentResolver {
@@ -111,7 +112,7 @@ public class OrderOrSortArgumentResolver implements HandlerMethodArgumentResolve
             boolean ascending = true;
             if (parts.length > 1 && StringUtils.hasText(parts[1])) {
                 String direction = parts[1].trim().toLowerCase();
-                ascending = !"desc".equals(direction) && !"descending".equals(direction);
+                ascending = !"desc".equalsIgnoreCase(direction) && !"descending".equalsIgnoreCase(direction);
             }
 
             if (ascending) {
