@@ -17,13 +17,13 @@
 
 package github.luckygc.ecm;
 
-import github.luckygc.jakartadata.annotation.EnableJakartaDataRepositories;
+import github.luckygc.jakartadata.annotation.EnableDataRepositories;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableJakartaDataRepositories
+@EnableDataRepositories
 public class EcmApplication {
 
     public static void main(String[] args) {

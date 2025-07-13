@@ -21,12 +21,9 @@ import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.module.user.repository.UserRepository;
 import github.luckygc.ecm.util.spring.ApplicationContextHolder;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +31,10 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /** 测试控制器 用于测试自定义登录过滤器的功能 */
 @Slf4j
@@ -91,11 +92,7 @@ public class TestController {
         TransactionTemplate transactionTemplate =
                 applicationContext.getBean(TransactionTemplate.class);
         transactionTemplate.executeWithoutResult(
-                status -> {
-                    response.put("test_user", bean.findAll().toList());
-                });
-
-        response.put("test_user2", bean.test());
+                status -> response.put("test_user", bean.findAll().toList()));
 
         return Result.ok(response);
     }

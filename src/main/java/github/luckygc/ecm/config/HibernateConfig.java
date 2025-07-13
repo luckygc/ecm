@@ -19,24 +19,23 @@ package github.luckygc.ecm.config;
 
 import github.luckygc.jakartadata.provider.hibernate.SessionFactoryBean;
 
-import javax.sql.DataSource;
-
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
 
+import javax.sql.DataSource;
+
 /** Spring配置类，用于配置SessionFactory */
 @Configuration
+@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 public class HibernateConfig {
 
     @Bean
-    @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-    public SessionFactory sessionFactory(DataSource dataSource) {
+    public SessionFactoryBean sessionFactory(DataSource dataSource) {
         SessionFactoryBean sessionFactoryBean = new SessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource);
-        sessionFactoryBean.setPackagesToScan(new String[] {"github.luckygc.**.entity"});
-        return sessionFactoryBean.getObject();
+        sessionFactoryBean.setPackagesToScan(new String[] {"github.luckygc.ecm"});
+        return sessionFactoryBean;
     }
 }

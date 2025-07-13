@@ -27,8 +27,6 @@ import jakarta.data.repository.Repository;
 
 import java.util.Optional;
 
-import org.hibernate.StatelessSession;
-
 /** 用户仓库接口 */
 @Repository(provider = "hibernate")
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
@@ -43,15 +41,4 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     @Query("update user set status = :status where id = :userId")
     void updateStatus(Long userId, UserStatus status);
-
-    StatelessSession session();
-
-    default UserEntity test() {
-        //        return session().get(UserEntity.class, 1L);
-        StatelessSession session = session();
-        System.out.println(getClass());
-        session.get(UserEntity.class, 1L);
-        System.out.println(getClass());
-        return findByUsername("admin").get();
-    }
 }
