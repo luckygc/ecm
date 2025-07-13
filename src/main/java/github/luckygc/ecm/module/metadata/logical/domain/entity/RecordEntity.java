@@ -17,14 +17,26 @@
 
 package github.luckygc.ecm.module.metadata.logical.domain.entity;
 
-import github.luckygc.ecm.common.domain.entity.BaseEntity;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Table(name = "record_entity")
 @Entity
-public class RecordEntity extends BaseEntity {
+public class RecordEntity {
+    @Id @SnowflakeId private Long id;
+
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
+
     private String name;
     private String description;
 }

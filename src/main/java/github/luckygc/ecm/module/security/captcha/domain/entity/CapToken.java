@@ -17,14 +17,19 @@
 
 package github.luckygc.ecm.module.security.captcha.domain.entity;
 
-import github.luckygc.ecm.common.domain.entity.BaseEntity;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Table(
         name = "cap_token",
@@ -35,8 +40,12 @@ import lombok.experimental.Accessors;
 @Entity
 @Data
 @Accessors(chain = true)
-public class CapToken extends BaseEntity {
+public class CapToken {
+    @Id @SnowflakeId private Long id;
 
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
     private String token;
     private Long expires;
 }

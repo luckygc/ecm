@@ -17,29 +17,35 @@
 
 package github.luckygc.ecm.module.user.domain.entity;
 
-import github.luckygc.ecm.common.domain.entity.BaseEntity;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 import github.luckygc.ecm.module.user.domain.enums.UserStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-@Getter
-@Setter
+@Data
 @RequiredArgsConstructor
 @Entity(name = "user")
 @Table(name = "t_user")
-public class UserEntity extends BaseEntity {
+public class UserEntity {
+    @Id @SnowflakeId private Long id;
+
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
 
     /** 用户名 */
     @NotBlank(message = "用户名不能为空")

@@ -17,23 +17,33 @@
 
 package github.luckygc.ecm.module.user.domain.entity;
 
-import github.luckygc.ecm.common.domain.entity.BaseEntity;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /** 角色实体 */
 @Getter
 @Setter
 @Entity(name = "role")
 @Table(name = "t_role")
-public class RoleEntity extends BaseEntity {
+public class RoleEntity {
+    @Id @SnowflakeId private Long id;
+
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
 
     /** 角色编码 */
     @Column(nullable = false, unique = true, length = 50)

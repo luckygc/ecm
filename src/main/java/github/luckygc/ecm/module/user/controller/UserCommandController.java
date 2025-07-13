@@ -15,28 +15,31 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm.module.user.service;
+package github.luckygc.ecm.module.user.controller;
 
 import github.luckygc.ecm.common.domain.Result;
-import github.luckygc.ecm.module.user.domain.dto.UserDetailDTO;
 import github.luckygc.ecm.module.user.domain.request.CreateUserRequest;
+import github.luckygc.ecm.module.user.service.UserService;
 
-/** 用户服务接口 定义用户相关的业务操作 */
-public interface UserService {
+import jakarta.validation.Valid;
 
-    /**
-     * 根据用户名获取用户详情
-     *
-     * @param username 用户名
-     * @return 用户DTO
-     */
-    UserDetailDTO getDetailByUsername(String username);
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-    /**
-     * 创建用户
-     *
-     * @param createUserRequest 创建用户请求
-     * @return 创建的用户DTO
-     */
-    Result<Void> createUser(CreateUserRequest createUserRequest);
+@Slf4j
+@RestController
+@RequestMapping("/api")
+@RequiredArgsConstructor
+public class UserCommandController {
+
+    private final UserService userService;
+
+    @PostMapping("/users/create")
+    public Result<Void> create(@Valid @RequestBody CreateUserRequest createUserRequest) {
+        return userService.createUser(createUserRequest);
+    }
 }

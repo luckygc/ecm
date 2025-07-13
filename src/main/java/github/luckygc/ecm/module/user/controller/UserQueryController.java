@@ -29,17 +29,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/current-user")
+@RequestMapping("/api")
 @RequiredArgsConstructor
-public class CurrentUserController {
+public class UserQueryController {
 
     private final UserService userService;
 
-    @GetMapping
-    public Result<UserDetailDTO> getCurrentUserDetail() {
+    @GetMapping("/users/me")
+    public Result<UserDetailDTO> me() {
         SecurityContext context = SecurityContextHolder.getContext();
         String name = context.getAuthentication().getName();
-        UserDetailDTO userDetail = userService.getUserDetailByUsername(name);
+        UserDetailDTO userDetail = userService.getDetailByUsername(name);
         return Result.ok(userDetail);
     }
 }

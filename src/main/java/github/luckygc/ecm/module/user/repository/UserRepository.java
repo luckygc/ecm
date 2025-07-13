@@ -20,12 +20,17 @@ package github.luckygc.ecm.module.user.repository;
 import github.luckygc.ecm.module.user.domain.entity.UserEntity;
 import github.luckygc.ecm.module.user.domain.enums.UserStatus;
 
+import jakarta.data.Order;
+import jakarta.data.page.Page;
+import jakarta.data.page.PageRequest;
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Query;
 import jakarta.data.repository.Repository;
 
 import java.util.Optional;
+
+import org.hibernate.query.restriction.Restriction;
 
 /** 用户仓库接口 */
 @Repository(provider = "hibernate")
@@ -41,4 +46,8 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     @Query("update user set status = :status where id = :userId")
     void updateStatus(Long userId, UserStatus status);
+
+    @Find
+    Page<UserEntity> findByDynamicCondition(
+            Restriction<UserEntity> restriction, PageRequest page, Order<UserEntity> order);
 }

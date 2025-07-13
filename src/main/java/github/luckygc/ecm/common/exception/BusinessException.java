@@ -20,6 +20,7 @@ package github.luckygc.ecm.common.exception;
 import github.luckygc.ecm.common.constant.GeneralErrorCode;
 
 import java.io.Serial;
+import java.util.function.Supplier;
 
 import lombok.Getter;
 
@@ -37,5 +38,13 @@ public class BusinessException extends RuntimeException {
     public BusinessException(String code, String message) {
         super(message);
         this.code = code;
+    }
+
+    public static BusinessException of(String code, String message) {
+        return new BusinessException(code, message);
+    }
+
+    public static Supplier<BusinessException> ofSupplier(String code, String message) {
+        return () -> new BusinessException(code, message);
     }
 }

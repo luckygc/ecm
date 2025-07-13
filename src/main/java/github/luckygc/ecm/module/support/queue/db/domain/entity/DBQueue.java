@@ -17,25 +17,31 @@
 
 package github.luckygc.ecm.module.support.queue.db.domain.entity;
 
-import github.luckygc.ecm.common.domain.entity.BaseEntity;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /** 数据库队列实体 用于存储需要异步处理的任务 */
 @Entity
 @Table(name = "db_queue")
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class DBQueue extends BaseEntity {
+public class DBQueue {
+    @Id @SnowflakeId private Long id;
+
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
 
     /** 队列名称 */
     @Column(name = "queue_name", nullable = false, length = 100)

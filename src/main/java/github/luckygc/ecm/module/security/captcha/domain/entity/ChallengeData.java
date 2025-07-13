@@ -17,18 +17,22 @@
 
 package github.luckygc.ecm.module.security.captcha.domain.entity;
 
-import github.luckygc.ecm.common.domain.entity.BaseEntity;
+import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
 import github.luckygc.ecm.module.security.captcha.domain.Challenge;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
-
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 @Table(
@@ -40,7 +44,12 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @Accessors(chain = true)
 @Data
-public class ChallengeData extends BaseEntity {
+public class ChallengeData {
+    @Id @SnowflakeId private Long id;
+
+    @CreationTimestamp private LocalDateTime createTime;
+
+    @UpdateTimestamp private LocalDateTime updateTime;
 
     @Column(length = 50, comment = "挑战唯一标识")
     private String token;

@@ -19,12 +19,12 @@ package github.luckygc.ecm.config;
 
 import github.luckygc.jakartadata.provider.hibernate.SessionFactoryBean;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
-
-import javax.sql.DataSource;
 
 /** Spring配置类，用于配置SessionFactory */
 @Configuration
