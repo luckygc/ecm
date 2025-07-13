@@ -57,7 +57,7 @@
 		<jakarta-data-spring.version>1.1.0</jakarta-data-spring.version>
 		<mybatis-spring-boot-starter.version>3.0.4</mybatis-spring-boot-starter.version>
 		<mybatis-dynamic-sql.version>1.5.2</mybatis-dynamic-sql.version>
-		<commons-lang3.version>3.17.0</commons-lang3.version>
+		<commons-lang3.version>3.18.0</commons-lang3.version>
 		<commons-codec.version>1.17.2</commons-codec.version>
 		<commons-collections4.version>4.5.0</commons-collections4.version>
 		<guava.version>33.4.8-jre</guava.version>
