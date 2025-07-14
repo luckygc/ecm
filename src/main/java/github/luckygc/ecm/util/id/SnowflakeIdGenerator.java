@@ -17,15 +17,19 @@
 
 package github.luckygc.ecm.util.id;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-
-import lombok.Getter;
-import lombok.ToString;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class SnowflakeIdGenerator {
+
+    private final Lock lock = new ReentrantLock();
 
     private static SnowflakeIdGenerator instance;
 
@@ -50,25 +54,32 @@ public class SnowflakeIdGenerator {
         this.workerId = workerId;
     }
 
-    public synchronized long nextId() {
-        long timestamp = currentTime();
+    public long nextId() {
+        try {
+            lock.lock();
+            long timestamp = currentTime();
 
-        if (timestamp < lastTimestamp) {
-            throw new RuntimeException("系统时钟回拨，拒绝生成 ID");
-        }
-
-        if (timestamp == lastTimestamp) {
-            sequence = (sequence + 1) & maxSequence;
-            if (sequence == 0) {
-                timestamp = waitUntilNextMillis(lastTimestamp);
+            if (timestamp < lastTimestamp) {
+                throw new RuntimeException("系统时钟回拨，拒绝生成 ID");
             }
-        } else {
-            sequence = 0L;
+
+            if (timestamp == lastTimestamp) {
+                sequence = (sequence + 1) & maxSequence;
+                if (sequence == 0) {
+                    timestamp = waitUntilNextMillis(lastTimestamp);
+                }
+            } else {
+                sequence = 0L;
+            }
+
+            lastTimestamp = timestamp;
+
+            return ((timestamp - epoch) << timestampLeftShift)
+                    | (workerId << workerIdShift)
+                    | sequence;
+        } finally {
+            lock.unlock();
         }
-
-        lastTimestamp = timestamp;
-
-        return ((timestamp - epoch) << timestampLeftShift) | (workerId << workerIdShift) | sequence;
     }
 
     private long waitUntilNextMillis(long lastTimestamp) {

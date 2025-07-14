@@ -19,6 +19,8 @@ package github.luckygc.ecm.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Pattern;
 
 /** HTTP请求工具类 */
@@ -88,7 +90,7 @@ public final class RequestUtils {
     private static String getIpFromHeader(HttpServletRequest request, String headerName) {
         String ip = request.getHeader(headerName);
 
-        if (ip == null || ip.trim().isEmpty() || UNKNOWN.equalsIgnoreCase(ip.trim())) {
+        if (StringUtils.isBlank(ip) || UNKNOWN.equalsIgnoreCase(ip.trim())) {
             return null;
         }
 
@@ -113,7 +115,7 @@ public final class RequestUtils {
      * @return 是否为有效IP
      */
     private static boolean isValidIp(String ip) {
-        if (ip == null || ip.trim().isEmpty() || UNKNOWN.equalsIgnoreCase(ip.trim())) {
+        if (StringUtils.isBlank(ip) || UNKNOWN.equalsIgnoreCase(ip.trim())) {
             return false;
         }
 
@@ -157,7 +159,7 @@ public final class RequestUtils {
      * @return 是否为本地地址
      */
     public static boolean isLocalhost(String ip) {
-        if (ip == null || ip.trim().isEmpty()) {
+        if (StringUtils.isBlank(ip)) {
             return false;
         }
 
