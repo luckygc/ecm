@@ -18,6 +18,7 @@
 package github.luckygc.ecm.config.property;
 
 import lombok.Data;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -30,5 +31,5 @@ public class AppProperties {
     private String id;
 
     /** 应用序号,基于0 */
-    private long number = 0;
+    private long number;
 }

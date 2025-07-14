@@ -18,6 +18,7 @@
 package github.luckygc.ecm.config.property;
 
 import lombok.Data;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -50,6 +51,6 @@ public class SecurityProperties {
         private int maximumSessions = 3;
 
         /** 当达到最大会话数时是否阻止新登录 */
-        private boolean maxSessionsPreventsLogin = false;
+        private boolean maxSessionsPreventsLogin;
     }
 }
