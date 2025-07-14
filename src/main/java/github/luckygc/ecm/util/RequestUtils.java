@@ -139,7 +139,7 @@ public class RequestUtils {
      */
     private static boolean isValidIPv6(String ip) {
         // 处理IPv6的各种格式
-        if (ip.equals("::1") || ip.equals("::")) {
+        if ("::1".equals(ip) || "::".equals(ip)) {
             return true;
         }
 
