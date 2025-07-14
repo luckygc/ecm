@@ -22,7 +22,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
 
 /** HTTP请求工具类 */
-public class RequestUtils {
+public final class RequestUtils {
+
+    private RequestUtils() {}
 
     /** IPv4地址正则表达式 */
     private static final Pattern IPV4_PATTERN =
