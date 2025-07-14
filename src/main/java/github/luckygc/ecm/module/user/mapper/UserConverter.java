@@ -22,13 +22,14 @@ import github.luckygc.ecm.module.user.domain.entity.UserEntity;
 import github.luckygc.ecm.module.user.domain.request.CreateUserRequest;
 import github.luckygc.ecm.module.user.domain.request.UpdateUserRequest;
 
-import java.util.List;
-
+import org.jspecify.annotations.Nullable;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
+
+import java.util.List;
 
 /** 用户对象映射器 */
 @Mapper(
@@ -61,5 +62,5 @@ public interface UserConverter {
      */
     void updateEntity(UpdateUserRequest updateUserRequest, @MappingTarget UserEntity userEntity);
 
-    List<UserDetailDTO> toDto(List<UserEntity> userEntities);
+    @Nullable List<UserDetailDTO> toDto(List<UserEntity> userEntities);
 }
