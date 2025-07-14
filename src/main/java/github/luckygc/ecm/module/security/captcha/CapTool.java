@@ -20,7 +20,7 @@ package github.luckygc.ecm.module.security.captcha;
 import org.apache.commons.lang3.StringUtils;
 
 /** <a href="https://capjs.js.org">capjs</a> 服务端算法实现 与JavaScript版本完全一致的PRNG实现 */
-public class CapTool {
+public final class CapTool {
 
     private CapTool() {}
 

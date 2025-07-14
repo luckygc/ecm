@@ -20,7 +20,7 @@ package github.luckygc.ecm.common.util;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class TimeUtils {
+public final class TimeUtils {
 
     private TimeUtils() {}
 

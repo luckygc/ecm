@@ -19,7 +19,7 @@ package github.luckygc.ecm.util;
 
 import java.util.function.Function;
 
-public class EnumUtils {
+public final class EnumUtils {
 
     private EnumUtils() {}
 
