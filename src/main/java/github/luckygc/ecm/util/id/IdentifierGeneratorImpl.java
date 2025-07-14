@@ -22,7 +22,11 @@ import github.luckygc.ecm.util.spring.ApplicationContextHolder;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
+import java.io.Serial;
+
 public class IdentifierGeneratorImpl implements IdentifierGenerator {
+
+    @Serial private static final long serialVersionUID = 1L;
 
     private SnowflakeIdGenerator snowflakeIdGenerator;
 
