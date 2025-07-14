@@ -20,6 +20,7 @@ package github.luckygc.ecm.config.property;
 import github.luckygc.ecm.common.enums.StorageType;
 
 import lombok.Data;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -70,7 +71,6 @@ public class StorageProperties {
         return switch (type) {
             case S3 -> s3.getBucket();
             case LOCAL -> local.getBasePath();
-            default -> null;
         };
     }
 }
