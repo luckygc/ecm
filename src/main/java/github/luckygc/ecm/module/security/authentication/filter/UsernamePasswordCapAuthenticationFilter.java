@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -59,7 +60,7 @@ public class UsernamePasswordCapAuthenticationFilter extends UsernamePasswordAut
                 throw new AuthenticationServiceException("人机认证失败，请重试");
             }
         } catch (IllegalArgumentException e) {
-            throw new AuthenticationServiceException(e.getMessage());
+            throw new AuthenticationServiceException(e.getMessage(), e);
         }
 
         return super.attemptAuthentication(request, response);
