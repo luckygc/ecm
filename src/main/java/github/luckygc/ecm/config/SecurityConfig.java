@@ -23,9 +23,8 @@ import github.luckygc.ecm.module.security.authentication.handler.SecurityHandler
 import github.luckygc.ecm.module.security.captcha.Cap;
 import github.luckygc.ecm.module.user.domain.enums.BuiltInRoleEnum;
 
-import java.util.List;
-
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +44,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -66,8 +67,8 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(
             UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(passwordEncoder);
-        provider.setUserDetailsService(userDetailsService);
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
         provider.setHideUserNotFoundExceptions(true);
         return new ProviderManager(provider);
     }
