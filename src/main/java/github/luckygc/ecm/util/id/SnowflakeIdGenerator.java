@@ -17,15 +17,14 @@
 
 package github.luckygc.ecm.util.id;
 
-import lombok.Getter;
-import lombok.ToString;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import lombok.Getter;
+import lombok.ToString;
 
 public class SnowflakeIdGenerator {
 
@@ -94,7 +93,9 @@ public class SnowflakeIdGenerator {
         return System.currentTimeMillis();
     }
 
-    /** ID组成部分的实体类 */
+    /**
+     * ID组成部分的实体类
+     */
     @Getter
     @ToString
     public static class IdMetadata {

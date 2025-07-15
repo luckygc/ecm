@@ -27,15 +27,15 @@ import github.luckygc.ecm.module.user.domain.request.CreateUserRequest;
 import github.luckygc.ecm.module.user.manager.UserManager;
 import github.luckygc.ecm.module.user.mapper.UserConverter;
 import github.luckygc.ecm.module.user.repository.UserRepository;
-
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/** 用户服务实现类 负责处理用户相关的业务逻辑 */
+/**
+ * 用户服务实现类 负责处理用户相关的业务逻辑
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

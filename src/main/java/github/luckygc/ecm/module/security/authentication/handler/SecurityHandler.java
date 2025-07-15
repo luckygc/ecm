@@ -21,14 +21,14 @@ import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.module.security.authentication.domain.constant.AuthenticationErrorCode;
 import github.luckygc.ecm.util.ExceptionsSuppliers;
 import github.luckygc.ecm.util.RequestUtils;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -52,32 +52,26 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-/** 安全处理工具类 统一处理认证和授权异常，提供JSON格式的响应 */
+/**
+ * 安全处理工具类 统一处理认证和授权异常，提供JSON格式的响应
+ */
 @Slf4j
 @Component
-public class SecurityHandler
-        implements AuthenticationFailureHandler,
-                AuthenticationSuccessHandler,
-                LogoutSuccessHandler,
-                AccessDeniedHandler,
-                AuthenticationEntryPoint {
+public class SecurityHandler implements AuthenticationFailureHandler,
+        AuthenticationSuccessHandler,
+        LogoutSuccessHandler,
+        AccessDeniedHandler,
+        AuthenticationEntryPoint {
 
     private final HttpMessageConverter<Object> messageConverter;
 
     @SuppressWarnings("unchecked")
     public SecurityHandler(List<HttpMessageConverter<?>> converters) {
-        this.messageConverter =
-                (HttpMessageConverter<Object>)
-                        converters.stream()
-                                .filter(c -> c instanceof MappingJackson2HttpMessageConverter)
-                                .findFirst()
-                                .orElseThrow(
-                                        ExceptionsSuppliers.illegalState(
-                                                "No JSON message converter found"));
+
+        this.messageConverter = (HttpMessageConverter<Object>) converters.stream()
+                .filter(c -> c instanceof MappingJackson2HttpMessageConverter)
+                .findFirst()
+                .orElseThrow(ExceptionsSuppliers.illegalState("No JSON message converter found"));
     }
 
     @Override

@@ -18,24 +18,26 @@
 package github.luckygc.ecm.module.metadata.logical.domain.entity;
 
 import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 import java.time.LocalDateTime;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "record_property")
 public class RecordProperty {
-    @Id @SnowflakeId private Long id;
 
-    @CreationTimestamp private LocalDateTime createTime;
+    @Id
+    @SnowflakeId
+    private Long id;
 
-    @UpdateTimestamp private LocalDateTime updateTime;
+    @CreationTimestamp
+    private LocalDateTime createTime;
+
+    @UpdateTimestamp
+    private LocalDateTime updateTime;
     private String name;
     private String description;
     private String type;

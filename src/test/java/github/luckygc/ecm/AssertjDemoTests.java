@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class AssertJDemoTests {
+class AssertjDemoTests {
 
     @Test
     void test() {

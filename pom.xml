@@ -50,7 +50,7 @@
 		<spring.boot.version>3.5.3</spring.boot.version>
 		<spotless.version>2.44.5</spotless.version>
 		<jspecify.version>1.0.0</jspecify.version>
-		<checkstyle.version>10.18.2</checkstyle.version>
+		<checkstyle.version>10.26.1</checkstyle.version>
 		<jakarta.data.version>1.0.1</jakarta.data.version>
 		<!--	jitpack 打包后3.2.0在idea被识别为3.1.0，手动指定	-->
 		<jakarta.persistence.version>3.2.0</jakarta.persistence.version>
@@ -221,11 +221,11 @@
 					</execution>
 				</executions>
 				<configuration>
+					<configLocation>/tools/maven/custom_google_checks.xml</configLocation>
 					<suppressionsLocation>/tools/maven/suppressions.xml</suppressionsLocation>
 					<includeTestSourceDirectory>true</includeTestSourceDirectory>
-					<configLocation>/tools/maven/checkstyle.xml</configLocation>
-					<logViolationsToConsole>true</logViolationsToConsole>
 					<failOnViolation>true</failOnViolation>
+					<outputFile>checkstyle-report.xml</outputFile>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -236,13 +236,7 @@
 					<java>
 						<googleJavaFormat>
 							<version>1.27.0</version>
-							<style>AOSP</style>
 						</googleJavaFormat>
-
-						<!-- \# refers to the static imports -->
-						<importOrder>
-							<order>${project.groupId},javax,jakarta,java, \#</order>
-						</importOrder>
 
 						<removeUnusedImports/>
 

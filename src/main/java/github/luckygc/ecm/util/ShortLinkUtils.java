@@ -19,16 +19,23 @@ package github.luckygc.ecm.util;
 
 import java.security.SecureRandom;
 
-/** 短链工具类 */
+/**
+ * 短链工具类
+ */
 public final class ShortLinkUtils {
 
-    private ShortLinkUtils() {}
+    private ShortLinkUtils() {
+    }
 
-    /** Base62字符集（0-9, a-z, A-Z） */
+    /**
+     * Base62字符集（0-9, a-z, A-Z）
+     */
     private static final String BASE62_CHARS =
             "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    /** 默认短链长度 */
+    /**
+     * 默认短链长度
+     */
     private static final int DEFAULT_LENGTH = 6;
 
     /**

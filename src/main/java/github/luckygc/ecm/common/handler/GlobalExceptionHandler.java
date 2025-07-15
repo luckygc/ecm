@@ -17,25 +17,21 @@
 
 package github.luckygc.ecm.common.handler;
 
+import com.google.common.collect.Maps;
 import github.luckygc.ecm.common.constant.GeneralErrorCode;
 import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.common.exception.BusinessException;
-
 import jakarta.validation.ConstraintViolationException;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
-
-import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -46,12 +42,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-/** 全局异常处理器 */
+/**
+ * 全局异常处理器
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /** 处理资源不存在异常 */
+    /**
+     * 处理资源不存在异常
+     */
     @ExceptionHandler({NoHandlerFoundException.class, NoResourceFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result<Void> handleNoHandlerFoundException() {
@@ -86,7 +86,9 @@ public class GlobalExceptionHandler {
         return Result.error(GeneralErrorCode.ARGUMENT_NOT_VALID, ex.getMessage());
     }
 
-    /** 处理业务异常 */
+    /**
+     * 处理业务异常
+     */
     @ExceptionHandler(BusinessException.class)
     @ResponseStatus(HttpStatus.OK)
     public Result<Void> handleBusinessException(BusinessException e) {
@@ -110,14 +112,9 @@ public class GlobalExceptionHandler {
                 .body(result);
     }
 
-    /** 处理认证异常 注意：由于Spring Security在过滤器层面已经处理了认证异常， 这个方法通常不会被调用，但保留以防万一有认证异常泄露到Controller层 */
-    @ExceptionHandler(AuthenticationException.class)
-    public void handleAuthenticationException(AuthenticationException e) {
-        // Spring Security已在过滤器层面处理，此处不记录日志避免重复
-        // 如果到达这里，说明有认证异常泄露，静默处理
-    }
-
-    /** 处理其他异常 */
+    /**
+     * 处理其他异常
+     */
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result<Void> handleException(Exception e) {

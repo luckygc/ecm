@@ -17,28 +17,36 @@
 
 package github.luckygc.ecm.module.user.domain.enums;
 
-import jakarta.persistence.EnumeratedValue;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.EnumeratedValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/** 用户状态枚举 */
+/**
+ * 用户状态枚举
+ */
 @Getter
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum UserStatus {
 
-    /** 启用 */
+    /**
+     * 启用
+     */
     ENABLED("enabled", "启用"),
 
-    /** 禁用 */
+    /**
+     * 禁用
+     */
     DISABLED("disabled", "禁用"),
 
-    /** 锁定 */
+    /**
+     * 锁定
+     */
     LOCKED("locked", "锁定");
 
-    @EnumeratedValue private final String code;
+    @EnumeratedValue
+    private final String code;
 
     private final String label;
 }

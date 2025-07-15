@@ -20,13 +20,15 @@ package github.luckygc.ecm.module.user.manager;
 import github.luckygc.ecm.module.user.domain.dto.UserDetailDTO;
 import github.luckygc.ecm.module.user.domain.request.UpdateUserRequest;
 
-/** 用户管理器接口 负责处理需要事务的复杂业务逻辑 */
+/**
+ * 用户管理器接口 负责处理需要事务的复杂业务逻辑
+ */
 public interface UserManager {
 
     /**
      * 更新用户信息（事务操作）
      *
-     * @param id 用户ID
+     * @param id                用户ID
      * @param updateUserRequest 更新用户请求
      * @return 更新后的用户DTO
      */
@@ -35,7 +37,7 @@ public interface UserManager {
     /**
      * 更新用户状态（事务操作）
      *
-     * @param id 用户ID
+     * @param id     用户ID
      * @param status 新状态
      * @return 更新后的用户DTO
      */

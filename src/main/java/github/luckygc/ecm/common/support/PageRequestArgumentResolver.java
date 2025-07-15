@@ -18,7 +18,6 @@
 package github.luckygc.ecm.common.support;
 
 import jakarta.data.page.PageRequest;
-
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;
 import org.springframework.util.StringUtils;
@@ -27,7 +26,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-/** Jakarta Data PageRequest参数解析器 */
+/**
+ * Jakarta Data PageRequest参数解析器
+ */
 public class PageRequestArgumentResolver implements HandlerMethodArgumentResolver {
 
     private static final String PAGE_PARAMETER_NAME = "page";

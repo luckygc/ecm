@@ -19,18 +19,28 @@ package github.luckygc.ecm.common.constant;
 
 public interface GeneralErrorCode {
 
-    /** 未知错误 */
+    /**
+     * 未知错误
+     */
     String UNKNOWN_ERROR = "unknown_error";
 
-    /** 资源未找到 */
+    /**
+     * 资源未找到
+     */
     String RESOURCE_NOT_FOUND = "resource_not_found";
 
-    /** 参数校验失败 */
+    /**
+     * 参数校验失败
+     */
     String ARGUMENT_NOT_VALID = "argument_not_valid";
 
-    /** 请求方法不支持 */
+    /**
+     * 请求方法不支持
+     */
     String HTTP_METHOD_NOT_ALLOWED = "http_method_not_allowed";
 
-    /** 服务调用失败 */
+    /**
+     * 服务调用失败
+     */
     String BUSINESS_ERROR = "business_error";
 }

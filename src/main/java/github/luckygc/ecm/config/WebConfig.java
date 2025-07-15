@@ -19,10 +19,8 @@ package github.luckygc.ecm.config;
 
 import github.luckygc.ecm.common.support.OrderOrSortArgumentResolver;
 import github.luckygc.ecm.common.support.PageRequestArgumentResolver;
-
 import java.util.Arrays;
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

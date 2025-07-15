@@ -18,6 +18,7 @@
 package github.luckygc.ecm.module.security.authentication.domain.constant;
 
 public interface AuthenticationErrorCode {
+
     String AUTHENTICATION_FAILED = "authentication_failed";
     String INVALID_CREDENTIALS = "invalid_credentials";
     String ACCOUNT_DISABLED = "account_disabled";

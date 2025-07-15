@@ -22,7 +22,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
-/** 事务配置类 配置TransactionTemplate用于编程式事务管理 */
+/**
+ * 事务配置类 配置TransactionTemplate用于编程式事务管理
+ */
 @Configuration
 public class TransactionConfig {
 

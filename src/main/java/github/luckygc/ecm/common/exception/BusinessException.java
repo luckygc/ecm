@@ -18,17 +18,17 @@
 package github.luckygc.ecm.common.exception;
 
 import github.luckygc.ecm.common.constant.GeneralErrorCode;
-
 import java.io.Serial;
 import java.util.function.Supplier;
-
 import lombok.Getter;
 
 public class BusinessException extends RuntimeException {
 
-    @Serial private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    @Getter private final String code;
+    @Getter
+    private final String code;
 
     public BusinessException(String message) {
         super(message);

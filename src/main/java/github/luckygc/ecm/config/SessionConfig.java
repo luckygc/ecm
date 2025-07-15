@@ -23,7 +23,9 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
 import org.springframework.session.web.http.HeaderHttpSessionIdResolver;
 import org.springframework.session.web.http.HttpSessionIdResolver;
 
-/** 会话配置类 配置Spring Session相关设置，使用Token认证而不是Cookie */
+/**
+ * 会话配置类 配置Spring Session相关设置，使用Token认证而不是Cookie
+ */
 @Configuration
 @EnableJdbcHttpSession
 public class SessionConfig {

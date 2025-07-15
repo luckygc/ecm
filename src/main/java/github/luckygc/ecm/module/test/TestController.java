@@ -21,11 +21,9 @@ import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.module.user.domain.entity.UserEntity;
 import github.luckygc.ecm.module.user.domain.entity.UserEntity_;
 import github.luckygc.ecm.module.user.repository.UserRepository;
-
 import jakarta.data.Order;
 import jakarta.data.page.Page;
 import jakarta.data.page.PageRequest;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.restriction.Restriction;
@@ -34,7 +32,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** 测试控制器 用于测试自定义登录过滤器的功能 */
+/**
+ * 测试控制器 用于测试自定义登录过滤器的功能
+ */
 @Slf4j
 @RestController
 @RequestMapping("/api")
@@ -43,7 +43,9 @@ public class TestController {
 
     private final BeanFactory beanFactory;
 
-    /** 获取当前认证用户信息 */
+    /**
+     * 获取当前认证用户信息
+     */
     @GetMapping("/public/test")
     public Result<Object> test(PageRequest pageRequest, Order<UserEntity> order) {
         UserRepository userRepository = beanFactory.getBean(UserRepository.class);

@@ -18,34 +18,71 @@
 package github.luckygc.ecm.module.security.captcha.domain.entity;
 
 import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
-
 import java.time.LocalDateTime;
-
-import lombok.Data;
+import java.util.Objects;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.proxy.HibernateProxy;
 
-@Table(
-        name = "cap_token",
+@Table(name = "cap_token",
         indexes = {
-            @Index(name = "uk_cap_token_token", columnList = "token", unique = true),
-            @Index(name = "idx_cap_token_expires", columnList = "expires")
+                @Index(name = "uk_cap_token_token", columnList = "token", unique = true),
+                @Index(name = "idx_cap_token_expires", columnList = "expires")
         })
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Accessors(chain = true)
 public class CapToken {
-    @Id @SnowflakeId private Long id;
 
-    @CreationTimestamp private LocalDateTime createTime;
+    @Id
+    @SnowflakeId
+    private Long id;
 
-    @UpdateTimestamp private LocalDateTime updateTime;
+    @CreationTimestamp
+    private LocalDateTime createTime;
+
+    @UpdateTimestamp
+    private LocalDateTime updateTime;
     private String token;
     private Long expires;
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        Class<?> oEffectiveClass = o instanceof HibernateProxy
+                ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass()
+                : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy
+                ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass()
+                : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) {
+            return false;
+        }
+        CapToken capToken = (CapToken) o;
+        return getId() != null && Objects.equals(getId(), capToken.getId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer()
+                .getPersistentClass()
+                .hashCode() : getClass().hashCode();
+    }
 }

@@ -18,7 +18,6 @@
 package github.luckygc.ecm.util.spring;
 
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -27,7 +26,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-/** Spring上下文工具类，用于在非Spring管理的类中获取Bean */
+/**
+ * Spring上下文工具类，用于在非Spring管理的类中获取Bean
+ */
 @Component
 public class ApplicationContextHolder implements ApplicationContextAware {
 
@@ -56,7 +57,7 @@ public class ApplicationContextHolder implements ApplicationContextAware {
      * 根据Bean名称获取Bean
      *
      * @param name Bean名称
-     * @param <T> Bean类型
+     * @param <T>  Bean类型
      * @return Bean实例
      */
     @SuppressWarnings("unchecked")
@@ -69,7 +70,7 @@ public class ApplicationContextHolder implements ApplicationContextAware {
      * 根据Bean类型获取Bean
      *
      * @param clazz Bean类型
-     * @param <T> Bean类型
+     * @param <T>   Bean类型
      * @return Bean实例
      */
     public static <T> T getBean(Class<T> clazz) {
@@ -80,9 +81,9 @@ public class ApplicationContextHolder implements ApplicationContextAware {
     /**
      * 根据Bean名称和类型获取Bean
      *
-     * @param name Bean名称
+     * @param name  Bean名称
      * @param clazz Bean类型
-     * @param <T> Bean类型
+     * @param <T>   Bean类型
      * @return Bean实例
      */
     public static <T> T getBean(String name, Class<T> clazz) {
@@ -94,7 +95,7 @@ public class ApplicationContextHolder implements ApplicationContextAware {
      * 获取指定类型的所有Bean
      *
      * @param clazz Bean类型
-     * @param <T> Bean类型
+     * @param <T>   Bean类型
      * @return 所有匹配的Bean，key为Bean名称，value为Bean实例
      */
     public static <T> Map<String, T> getBeansOfType(Class<T> clazz) {
@@ -102,7 +103,9 @@ public class ApplicationContextHolder implements ApplicationContextAware {
         return applicationContext.getBeansOfType(clazz);
     }
 
-    /** 检查ApplicationContext是否已初始化 */
+    /**
+     * 检查ApplicationContext是否已初始化
+     */
     private static void assertApplicationContext() {
         if (applicationContext == null) {
             throw new IllegalStateException("ApplicationContext未初始化，请在启动Spring容器后再调用此方法");

@@ -22,7 +22,9 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.List;
 
-/** 存储服务接口 支持本地存储、S3协议 */
+/**
+ * 存储服务接口 支持本地存储、S3协议
+ */
 public interface StorageManager {
 
     String uploadFile(Path filePath) throws IOException;

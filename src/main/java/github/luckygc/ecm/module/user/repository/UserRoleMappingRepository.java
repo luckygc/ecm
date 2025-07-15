@@ -18,18 +18,17 @@
 package github.luckygc.ecm.module.user.repository;
 
 import github.luckygc.ecm.module.user.domain.entity.UserRoleMappingEntity;
-
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Delete;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Repository;
-
 import java.util.List;
-
 import org.hibernate.StatelessSession;
 import org.springframework.stereotype.Component;
 
-/** 用户角色关联仓库接口 */
+/**
+ * 用户角色关联仓库接口
+ */
 @Repository
 @Component
 public interface UserRoleMappingRepository extends CrudRepository<UserRoleMappingEntity, Long> {

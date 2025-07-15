@@ -22,4 +22,6 @@ package github.luckygc.ecm.module.security.captcha.domain;
  * @param s Size of each challenge
  * @param d Difficulty level
  */
-public record Challenge(int c, int s, int d) {}
+public record Challenge(int c, int s, int d) {
+
+}

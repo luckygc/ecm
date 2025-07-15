@@ -20,7 +20,9 @@ package github.luckygc.ecm.util;
 import java.util.function.Supplier;
 
 public final class ExceptionsSuppliers {
-    private ExceptionsSuppliers() {}
+
+    private ExceptionsSuppliers() {
+    }
 
     public static Supplier<IllegalStateException> illegalState(String message) {
         return () -> new IllegalStateException(message);

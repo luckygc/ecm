@@ -18,46 +18,58 @@
 package github.luckygc.ecm.module.user.domain.entity;
 
 import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
-
 import java.time.LocalDateTime;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-/** 角色实体 */
+/**
+ * 角色实体
+ */
 @Getter
 @Setter
 @Entity(name = "role")
 @Table(name = "t_role")
 public class RoleEntity {
-    @Id @SnowflakeId private Long id;
 
-    @CreationTimestamp private LocalDateTime createTime;
+    @Id
+    @SnowflakeId
+    private Long id;
 
-    @UpdateTimestamp private LocalDateTime updateTime;
+    @CreationTimestamp
+    private LocalDateTime createTime;
 
-    /** 角色编码 */
+    @UpdateTimestamp
+    private LocalDateTime updateTime;
+
+    /**
+     * 角色编码
+     */
     @Column(nullable = false, unique = true, length = 50)
     private String code;
 
-    /** 角色名称 */
+    /**
+     * 角色名称
+     */
     @Column(nullable = false, unique = true, length = 50)
     private String name;
 
-    /** 角色描述 */
+    /**
+     * 角色描述
+     */
     @Column(length = 140)
     private String description;
 
-    /** 是否系统内置 */
+    /**
+     * 是否系统内置
+     */
     @Column(nullable = false)
     private Boolean systemFlag = false;
 
@@ -66,5 +78,6 @@ public class RoleEntity {
     private Integer version;
 
     @PostPersist
-    public void postPersist() {}
+    public void postPersist() {
+    }
 }

@@ -19,7 +19,6 @@ package github.luckygc.ecm.config;
 
 import github.luckygc.ecm.config.property.AppProperties;
 import github.luckygc.ecm.util.id.SnowflakeIdGenerator;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

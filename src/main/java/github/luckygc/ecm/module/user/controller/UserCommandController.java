@@ -20,9 +20,7 @@ package github.luckygc.ecm.module.user.controller;
 import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.module.user.domain.request.CreateUserRequest;
 import github.luckygc.ecm.module.user.service.UserService;
-
 import jakarta.validation.Valid;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

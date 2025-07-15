@@ -18,7 +18,6 @@
 package github.luckygc.ecm.common.domain;
 
 import github.luckygc.ecm.common.constant.GeneralErrorCode;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

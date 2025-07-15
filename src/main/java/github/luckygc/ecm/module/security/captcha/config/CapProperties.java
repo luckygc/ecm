@@ -26,18 +26,28 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app.security.cap")
 public class CapProperties {
 
-    /** 生成的挑战数量 */
+    /**
+     * 生成的挑战数量
+     */
     private int challengeCount = 50;
 
-    /** 每条挑战的长度 */
+    /**
+     * 每条挑战的长度
+     */
     private int challengeSize = 32;
 
-    /** 挑战难度 */
+    /**
+     * 挑战难度
+     */
     private int challengeDifficulty = 4;
 
-    /** 挑战过期时间，秒 */
+    /**
+     * 挑战过期时间，秒
+     */
     private long challengeExpireMs = 5 * 60 * 1000;
 
-    /** token过期时间，秒 */
+    /**
+     * token过期时间，秒
+     */
     private long tokenExpireMs = 2 * 60 * 1000;
 }

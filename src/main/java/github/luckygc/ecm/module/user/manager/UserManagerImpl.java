@@ -26,9 +26,7 @@ import github.luckygc.ecm.module.user.domain.request.UpdateUserRequest;
 import github.luckygc.ecm.module.user.mapper.UserConverter;
 import github.luckygc.ecm.module.user.repository.UserRepository;
 import github.luckygc.ecm.util.EnumUtils;
-
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +34,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-/** 用户管理器实现类 负责处理需要事务的复杂业务逻辑 */
+/**
+ * 用户管理器实现类 负责处理需要事务的复杂业务逻辑
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor

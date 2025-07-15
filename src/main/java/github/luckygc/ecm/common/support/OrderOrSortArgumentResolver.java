@@ -18,10 +18,9 @@
 package github.luckygc.ecm.common.support;
 
 import com.google.common.collect.Lists;
-
 import jakarta.data.Order;
 import jakarta.data.Sort;
-
+import java.util.List;
 import org.apache.commons.collections4.ListUtils;
 import org.jspecify.annotations.NonNull;
 import org.springframework.core.MethodParameter;
@@ -31,9 +30,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import java.util.List;
-
-/** Jakarta Data Order或Sort参数解析器 */
+/**
+ * Jakarta Data Order或Sort参数解析器
+ */
 public class OrderOrSortArgumentResolver implements HandlerMethodArgumentResolver {
 
     private static final String SORT_PARAMETER_NAME = "sort";

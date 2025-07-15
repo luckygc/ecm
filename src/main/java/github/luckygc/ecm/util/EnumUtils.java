@@ -21,7 +21,8 @@ import java.util.function.Function;
 
 public final class EnumUtils {
 
-    private EnumUtils() {}
+    private EnumUtils() {
+    }
 
     public static <T extends Enum<T>, C> T fromCode(
             C code, Class<T> enumClass, Function<T, C> codeExtractor) {

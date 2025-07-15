@@ -18,32 +18,41 @@
 package github.luckygc.ecm.util;
 
 import jakarta.servlet.http.HttpServletRequest;
-
+import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.regex.Pattern;
-
-/** HTTP请求工具类 */
+/**
+ * HTTP请求工具类
+ */
 public final class RequestUtils {
 
-    private RequestUtils() {}
+    private RequestUtils() {
+    }
 
-    /** IPv4地址正则表达式 */
+    /**
+     * IPv4地址正则表达式
+     */
     private static final Pattern IPV4_PATTERN =
             Pattern.compile(
                     "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
 
-    /** IPv6地址正则表达式（简化版） */
+    /**
+     * IPv6地址正则表达式（简化版）
+     */
     private static final Pattern IPV6_PATTERN =
             Pattern.compile("^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$|^::1$|^::$");
 
-    /** 本地回环地址 */
+    /**
+     * 本地回环地址
+     */
     private static final String LOCALHOST_IPV4 = "127.0.0.1";
 
     private static final String LOCALHOST_IPV6 = "0:0:0:0:0:0:0:1";
     private static final String LOCALHOST_IPV6_SHORT = "::1";
 
-    /** 未知IP标识 */
+    /**
+     * 未知IP标识
+     */
     private static final String UNKNOWN = "unknown";
 
     /**
@@ -59,13 +68,13 @@ public final class RequestUtils {
 
         // 按优先级检查各种代理头
         String[] headers = {
-            "X-Forwarded-For",
-            "X-Real-IP",
-            "Proxy-Client-IP",
-            "WL-Proxy-Client-IP",
-            "HTTP_CLIENT_IP",
-            "HTTP_X_FORWARDED_FOR",
-            "X-Cluster-Client-IP"
+                "X-Forwarded-For",
+                "X-Real-IP",
+                "Proxy-Client-IP",
+                "WL-Proxy-Client-IP",
+                "HTTP_CLIENT_IP",
+                "HTTP_X_FORWARDED_FOR",
+                "X-Cluster-Client-IP"
         };
 
         for (String header : headers) {
@@ -83,7 +92,7 @@ public final class RequestUtils {
     /**
      * 从指定请求头获取IP地址
      *
-     * @param request HTTP请求对象
+     * @param request    HTTP请求对象
      * @param headerName 请求头名称
      * @return IP地址，如果无效则返回null
      */

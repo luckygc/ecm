@@ -18,14 +18,14 @@
 package github.luckygc.ecm.module.user.repository;
 
 import github.luckygc.ecm.module.user.domain.entity.RoleEntity;
-
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Repository;
-
 import java.util.Optional;
 
-/** 角色仓库接口 */
+/**
+ * 角色仓库接口
+ */
 @Repository
 public interface RoleRepository extends CrudRepository<RoleEntity, Long> {
 

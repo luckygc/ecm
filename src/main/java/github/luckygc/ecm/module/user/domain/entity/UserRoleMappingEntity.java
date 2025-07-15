@@ -18,18 +18,18 @@
 package github.luckygc.ecm.module.user.domain.entity;
 
 import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-/** 用户角色关联实体 */
+/**
+ * 用户角色关联实体
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -39,13 +39,19 @@ import lombok.Setter;
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "role_id"}))
 public class UserRoleMappingEntity {
 
-    @Id @SnowflakeId private Long id;
+    @Id
+    @SnowflakeId
+    private Long id;
 
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     @Column(nullable = false)
     private Long userId;
 
-    /** 角色ID */
+    /**
+     * 角色ID
+     */
     @Column(nullable = false)
     private Long roleId;
 }

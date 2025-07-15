@@ -20,7 +20,6 @@ package github.luckygc.ecm.module.user.controller;
 import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.module.user.domain.dto.UserDetailDTO;
 import github.luckygc.ecm.module.user.service.UserService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;

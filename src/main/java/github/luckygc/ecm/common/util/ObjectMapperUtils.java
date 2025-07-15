@@ -20,12 +20,12 @@ package github.luckygc.ecm.common.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import github.luckygc.ecm.util.spring.ApplicationContextHolder;
 
 public final class ObjectMapperUtils {
 
-    private ObjectMapperUtils() {}
+    private ObjectMapperUtils() {
+    }
 
     private static final ObjectMapper objectMapper =
             ApplicationContextHolder.getBean(ObjectMapper.class);

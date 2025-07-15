@@ -22,9 +22,7 @@ import github.luckygc.ecm.module.storage.service.StorageManager;
 import github.luckygc.ecm.module.storage.service.impl.LocalStorageManager;
 import github.luckygc.ecm.module.storage.service.impl.S3StorageManager;
 import github.luckygc.ecm.util.id.SnowflakeIdGenerator;
-
 import java.net.URI;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -38,7 +36,9 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3Configuration;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
-/** 存储配置类 根据配置属性条件性地创建不同的存储服务 */
+/**
+ * 存储配置类 根据配置属性条件性地创建不同的存储服务
+ */
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
@@ -46,7 +46,9 @@ public class StorageConfig {
 
     private final StorageProperties storageProperties;
 
-    /** 本地存储服务 当storage.type=local或未配置时启用（默认）. */
+    /**
+     * 本地存储服务 当storage.type=local或未配置时启用（默认）.
+     */
     @Bean
     @ConditionalOnProperty(name = "app.storage.type", havingValue = "local", matchIfMissing = true)
     public StorageManager localStorageService(SnowflakeIdGenerator snowflakeIdGenerator) {
@@ -54,7 +56,9 @@ public class StorageConfig {
         return new LocalStorageManager(storageProperties.getLocal(), snowflakeIdGenerator);
     }
 
-    /** S3存储服务 当storage.type=s3时启用. */
+    /**
+     * S3存储服务 当storage.type=s3时启用.
+     */
     @Bean
     @ConditionalOnProperty(name = "app.storage.type", havingValue = "s3")
     public StorageManager s3StorageService(
@@ -63,7 +67,9 @@ public class StorageConfig {
         return new S3StorageManager(s3Client, storageProperties.getS3(), snowflakeIdGenerator);
     }
 
-    /** S3客户端 (SDK v2) 当storage.type=s3时创建. */
+    /**
+     * S3客户端 (SDK v2) 当storage.type=s3时创建.
+     */
     @Bean
     @ConditionalOnProperty(name = "app.storage.type", havingValue = "s3")
     public S3Client s3Client() {
@@ -92,7 +98,9 @@ public class StorageConfig {
         return builder.build();
     }
 
-    /** S3预签名器 (SDK v2) 当storage.type=s3时创建. */
+    /**
+     * S3预签名器 (SDK v2) 当storage.type=s3时创建.
+     */
     @Bean
     @ConditionalOnProperty(name = "app.storage.type", havingValue = "s3")
     public S3Presigner s3Presigner() {

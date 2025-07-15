@@ -25,7 +25,8 @@ public final class StorageUtils {
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-    private StorageUtils() {}
+    private StorageUtils() {
+    }
 
     public static String generateObjectName(Long uniqueSequence, String filename) {
         String datePath = LocalDate.now().format(DATE_FORMATTER);

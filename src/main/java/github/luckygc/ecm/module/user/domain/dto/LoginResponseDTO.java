@@ -19,25 +19,39 @@ package github.luckygc.ecm.module.user.domain.dto;
 
 import lombok.Data;
 
-/** 登录响应DTO */
+/**
+ * 登录响应DTO
+ */
 @Data
 public class LoginResponseDTO {
 
-    /** 是否成功 */
+    /**
+     * 是否成功
+     */
     private boolean success;
 
-    /** 响应消息 */
+    /**
+     * 响应消息
+     */
     private String message;
 
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     private String userId;
 
-    /** 用户名 */
+    /**
+     * 用户名
+     */
     private String username;
 
-    /** 用户全名 */
+    /**
+     * 用户全名
+     */
     private String fullName;
 
-    /** 会话ID */
+    /**
+     * 会话ID
+     */
     private String sessionId;
 }

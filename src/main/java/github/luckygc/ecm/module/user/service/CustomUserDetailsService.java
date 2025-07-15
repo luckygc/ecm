@@ -20,10 +20,8 @@ package github.luckygc.ecm.module.user.service;
 import github.luckygc.ecm.module.user.domain.entity.UserEntity;
 import github.luckygc.ecm.module.user.domain.enums.UserStatus;
 import github.luckygc.ecm.module.user.repository.UserRepository;
-
 import java.util.ArrayList;
 import java.util.Collection;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,7 +34,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-/** 自定义用户详情服务 实现Spring Security的UserDetailsService接口 */
+/**
+ * 自定义用户详情服务 实现Spring Security的UserDetailsService接口
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

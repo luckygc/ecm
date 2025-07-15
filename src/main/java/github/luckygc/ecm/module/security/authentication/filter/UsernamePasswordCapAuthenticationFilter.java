@@ -18,12 +18,9 @@
 package github.luckygc.ecm.module.security.authentication.filter;
 
 import github.luckygc.ecm.module.security.captcha.Cap;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -31,7 +28,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/** 用户名密码captcha认证过滤器 */
+/**
+ * 用户名密码captcha认证过滤器
+ */
 @Slf4j
 public class UsernamePasswordCapAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 

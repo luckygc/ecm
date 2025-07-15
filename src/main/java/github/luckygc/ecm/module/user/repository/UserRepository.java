@@ -18,19 +18,18 @@
 package github.luckygc.ecm.module.user.repository;
 
 import github.luckygc.ecm.module.user.domain.entity.UserEntity;
-
 import jakarta.data.Order;
 import jakarta.data.page.Page;
 import jakarta.data.page.PageRequest;
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Repository;
-
+import java.util.Optional;
 import org.hibernate.query.restriction.Restriction;
 
-import java.util.Optional;
-
-/** 用户仓库接口 */
+/**
+ * 用户仓库接口
+ */
 @Repository(provider = "hibernate")
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
 

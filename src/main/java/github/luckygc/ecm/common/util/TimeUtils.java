@@ -22,7 +22,8 @@ import java.time.ZoneId;
 
 public final class TimeUtils {
 
-    private TimeUtils() {}
+    private TimeUtils() {
+    }
 
     public static long toTimestamp(LocalDateTime localDateTime) {
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();

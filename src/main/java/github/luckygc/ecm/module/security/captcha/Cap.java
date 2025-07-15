@@ -25,10 +25,8 @@ import github.luckygc.ecm.module.security.captcha.domain.dto.request.RedeemChall
 import github.luckygc.ecm.module.security.captcha.domain.entity.CapToken;
 import github.luckygc.ecm.module.security.captcha.domain.entity.ChallengeData;
 import github.luckygc.ecm.module.security.captcha.repository.CapRepository;
-
 import java.util.List;
 import java.util.stream.IntStream;
-
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -37,7 +35,9 @@ import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-/** <a href="https://capjs.js.org">capjs</a> 服务端接口定义 */
+/**
+ * <a href="https://capjs.js.org">capjs</a> 服务端接口定义
+ */
 @Component
 @RequiredArgsConstructor
 public class Cap {

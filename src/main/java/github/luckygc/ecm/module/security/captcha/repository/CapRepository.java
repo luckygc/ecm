@@ -19,7 +19,6 @@ package github.luckygc.ecm.module.security.captcha.repository;
 
 import github.luckygc.ecm.module.security.captcha.domain.entity.CapToken;
 import github.luckygc.ecm.module.security.captcha.domain.entity.ChallengeData;
-
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import jakarta.data.repository.Delete;
@@ -28,7 +27,6 @@ import jakarta.data.repository.Insert;
 import jakarta.data.repository.Query;
 import jakarta.data.repository.Repository;
 import jakarta.validation.constraints.NotNull;
-
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository

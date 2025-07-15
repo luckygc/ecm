@@ -21,7 +21,7 @@ import github.luckygc.ecm.module.user.domain.dto.UserDetailDTO;
 import github.luckygc.ecm.module.user.domain.entity.UserEntity;
 import github.luckygc.ecm.module.user.domain.request.CreateUserRequest;
 import github.luckygc.ecm.module.user.domain.request.UpdateUserRequest;
-
+import java.util.List;
 import org.jspecify.annotations.Nullable;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
@@ -29,9 +29,9 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 
-import java.util.List;
-
-/** 用户对象映射器 */
+/**
+ * 用户对象映射器
+ */
 @Mapper(
         componentModel = MappingConstants.ComponentModel.SPRING,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
@@ -58,9 +58,10 @@ public interface UserConverter {
      * 更新用户请求DTO的属性复制到用户实体 只更新非空字段
      *
      * @param updateUserRequest 更新用户请求DTO
-     * @param userEntity 目标用户实体
+     * @param userEntity        目标用户实体
      */
     void updateEntity(UpdateUserRequest updateUserRequest, @MappingTarget UserEntity userEntity);
 
-    @Nullable List<UserDetailDTO> toDto(List<UserEntity> userEntities);
+    @Nullable
+    List<UserDetailDTO> toDto(List<UserEntity> userEntities);
 }

@@ -18,102 +18,176 @@
 package github.luckygc.ecm.module.support.queue.db.domain.entity;
 
 import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 import java.time.LocalDateTime;
-
-import lombok.Data;
+import java.util.Objects;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.proxy.HibernateProxy;
 
-/** 数据库队列实体 用于存储需要异步处理的任务 */
+/**
+ * 数据库队列实体 用于存储需要异步处理的任务
+ */
 @Entity
 @Table(name = "db_queue")
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class DBQueue {
-    @Id @SnowflakeId private Long id;
 
-    @CreationTimestamp private LocalDateTime createTime;
+    @Id
+    @SnowflakeId
+    private Long id;
 
-    @UpdateTimestamp private LocalDateTime updateTime;
+    @CreationTimestamp
+    private LocalDateTime createTime;
 
-    /** 队列名称 */
+    @UpdateTimestamp
+    private LocalDateTime updateTime;
+
+    /**
+     * 队列名称
+     */
     @Column(name = "queue_name", nullable = false, length = 100)
     private String queueName;
 
-    /** 任务类型 */
+    /**
+     * 任务类型
+     */
     @Column(name = "task_type", nullable = false, length = 50)
     private String taskType;
 
-    /** 任务状态 PENDING: 待处理 PROCESSING: 处理中 COMPLETED: 已完成 FAILED: 失败 CANCELLED: 已取消 */
+    /**
+     * 任务状态 PENDING: 待处理 PROCESSING: 处理中 COMPLETED: 已完成 FAILED: 失败 CANCELLED: 已取消
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private QueueStatus status = QueueStatus.PENDING;
 
-    /** 优先级 (1-10, 1为最高优先级) */
+    /**
+     * 优先级 (1-10, 1为最高优先级)
+     */
     @Column(name = "priority", nullable = false)
     private Integer priority = 5;
 
-    /** 任务数据 (JSON格式) */
+    /**
+     * 任务数据 (JSON格式)
+     */
     @Column(name = "task_data", columnDefinition = "TEXT")
     private String taskData;
 
-    /** 处理结果 */
+    /**
+     * 处理结果
+     */
     @Column(name = "result", columnDefinition = "TEXT")
     private String result;
 
-    /** 错误信息 */
+    /**
+     * 错误信息
+     */
     @Column(name = "error_message", columnDefinition = "TEXT")
     private String errorMessage;
 
-    /** 重试次数 */
+    /**
+     * 重试次数
+     */
     @Column(name = "retry_count", nullable = false)
     private Integer retryCount = 0;
 
-    /** 最大重试次数 */
+    /**
+     * 最大重试次数
+     */
     @Column(name = "max_retry_count", nullable = false)
     private Integer maxRetryCount = 3;
 
-    /** 下次重试时间 */
+    /**
+     * 下次重试时间
+     */
     @Column(name = "next_retry_time")
     private LocalDateTime nextRetryTime;
 
-    /** 开始处理时间 */
+    /**
+     * 开始处理时间
+     */
     @Column(name = "process_start_time")
     private LocalDateTime processStartTime;
 
-    /** 完成时间 */
+    /**
+     * 完成时间
+     */
     @Column(name = "completed_time")
     private LocalDateTime completedTime;
 
-    /** 处理耗时(毫秒) */
+    /**
+     * 处理耗时(毫秒)
+     */
     @Column(name = "process_duration")
     private Long processDuration;
 
-    /** 创建者ID */
+    /**
+     * 创建者ID
+     */
     @Column(name = "creator_id")
     private Long creatorId;
 
-    /** 处理者ID */
+    /**
+     * 处理者ID
+     */
     @Column(name = "processor_id")
     private Long processorId;
 
-    /** 备注 */
+    /**
+     * 备注
+     */
     @Column(name = "remark", length = 500)
     private String remark;
 
-    /** 队列状态枚举 */
+    /**
+     * 队列状态枚举
+     */
     public enum QueueStatus {
         PENDING, // 待处理
         PROCESSING, // 处理中
         COMPLETED, // 已完成
         FAILED, // 失败
         CANCELLED // 已取消
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        Class<?> oEffectiveClass = o instanceof HibernateProxy
+                ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass()
+                : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy
+                ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass()
+                : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) {
+            return false;
+        }
+        DBQueue dbQueue = (DBQueue) o;
+        return getId() != null && Objects.equals(getId(), dbQueue.getId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer()
+                .getPersistentClass()
+                .hashCode() : getClass().hashCode();
     }
 }

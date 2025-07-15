@@ -19,4 +19,6 @@ package github.luckygc.ecm.module.security.captcha.domain.dto.request;
 
 import java.util.List;
 
-public record RedeemChallengeRequest(String token, List<Integer> solutions) {}
+public record RedeemChallengeRequest(String token, List<Integer> solutions) {
+
+}

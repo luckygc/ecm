@@ -18,9 +18,7 @@
 package github.luckygc.ecm.config.property;
 
 import github.luckygc.ecm.common.enums.StorageType;
-
 import lombok.Data;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -29,41 +27,61 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app.storage")
 public class StorageProperties {
 
-    /** 存储类型：local、s3 */
+    /**
+     * 存储类型：local、s3
+     */
     private StorageType type = StorageType.LOCAL;
 
-    /** 本地存储配置 */
+    /**
+     * 本地存储配置
+     */
     private Local local = new Local();
 
-    /** S3存储配置 */
+    /**
+     * S3存储配置
+     */
     private S3 s3 = new S3();
 
     @Data
     public static class Local {
 
-        /** 本地存储基础路径 */
+        /**
+         * 本地存储基础路径
+         */
         private String basePath = "./storage";
     }
 
     @Data
     public static class S3 {
 
-        /** AWS访问密钥ID */
+        /**
+         * AWS访问密钥ID
+         */
         private String accessKeyId;
 
-        /** AWS秘密访问密钥 */
+        /**
+         * AWS秘密访问密钥
+         */
         private String secretAccessKey;
 
-        /** AWS区域 */
+        /**
+         * AWS区域
+         */
         private String region = "us-east-1";
 
-        /** S3端点URL（可选，用于兼容S3的服务） */
+        /**
+         * S3端点URL（可选，用于兼容S3的服务）
+         */
         private String endpoint;
 
-        /** 默认存储桶名称 */
+        /**
+         * 默认存储桶名称
+         */
         private String bucket = "files";
 
-        /** 是否启用路径样式访问 */
+        /**
+         * 是否启用路径样式访问
+         */
         private boolean pathStyleAccess = true;
     }
 

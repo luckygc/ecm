@@ -21,14 +21,12 @@ import github.luckygc.ecm.config.property.StorageProperties;
 import github.luckygc.ecm.module.storage.service.StorageManager;
 import github.luckygc.ecm.util.StorageUtils;
 import github.luckygc.ecm.util.id.SnowflakeIdGenerator;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -42,7 +40,9 @@ import software.amazon.awssdk.services.s3.model.NoSuchKeyException;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Object;
 
-/** S3存储服务实现 使用AWS SDK S3 v2 */
+/**
+ * S3存储服务实现 使用AWS SDK S3 v2
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class S3StorageManager implements StorageManager {

@@ -19,15 +19,18 @@ package github.luckygc.ecm.module.security.captcha;
 
 import org.apache.commons.lang3.StringUtils;
 
-/** <a href="https://capjs.js.org">capjs</a> 服务端算法实现 与JavaScript版本完全一致的PRNG实现 */
+/**
+ * <a href="https://capjs.js.org">capjs</a> 服务端算法实现 与JavaScript版本完全一致的PRNG实现
+ */
 public final class CapTool {
 
-    private CapTool() {}
+    private CapTool() {
+    }
 
     /**
      * 从字符串种子生成指定长度的确定性十六进制字符串
      *
-     * @param seed 初始种子值
+     * @param seed   初始种子值
      * @param length 输出十六进制字符串长度
      * @return 从种子生成的确定性十六进制字符串
      */

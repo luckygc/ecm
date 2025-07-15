@@ -21,7 +21,9 @@ import github.luckygc.ecm.common.domain.Result;
 import github.luckygc.ecm.module.user.domain.dto.UserDetailDTO;
 import github.luckygc.ecm.module.user.domain.request.CreateUserRequest;
 
-/** 用户服务接口 定义用户相关的业务操作 */
+/**
+ * 用户服务接口 定义用户相关的业务操作
+ */
 public interface UserService {
 
     /**

@@ -22,13 +22,13 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import github.luckygc.ecm.util.id.IdentifierGeneratorImpl;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-
 import org.hibernate.annotations.IdGeneratorType;
 
 @IdGeneratorType(IdentifierGeneratorImpl.class)
 @Target({METHOD, FIELD})
 @Retention(RUNTIME)
-public @interface SnowflakeId {}
+public @interface SnowflakeId {
+
+}

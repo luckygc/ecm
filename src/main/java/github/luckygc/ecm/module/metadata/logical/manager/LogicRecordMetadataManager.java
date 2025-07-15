@@ -24,5 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Throwable.class)
 public class LogicRecordMetadataManager {
 
-    public void createRecordEntity() {}
+    public void createRecordEntity() {
+    }
 }

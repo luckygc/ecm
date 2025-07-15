@@ -21,7 +21,6 @@ import github.luckygc.ecm.module.security.captcha.Cap;
 import github.luckygc.ecm.module.security.captcha.domain.dto.CapTokenDTO;
 import github.luckygc.ecm.module.security.captcha.domain.dto.ChallengeDataDTO;
 import github.luckygc.ecm.module.security.captcha.domain.dto.request.RedeemChallengeRequest;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

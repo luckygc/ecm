@@ -18,9 +18,10 @@
 package github.luckygc.ecm.module.metadata.logical.repository;
 
 import github.luckygc.ecm.module.metadata.logical.domain.entity.RecordProperty;
-
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Repository;
 
 @Repository
-public interface RecordPropertyRepository extends CrudRepository<RecordProperty, Long> {}
+public interface RecordPropertyRepository extends CrudRepository<RecordProperty, Long> {
+
+}

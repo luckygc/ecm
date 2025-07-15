@@ -18,39 +18,51 @@
 package github.luckygc.ecm.config.property;
 
 import lombok.Data;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/** Spring Security配置属性类 用于从配置文件中读取安全相关的配置 */
+/**
+ * Spring Security配置属性类 用于从配置文件中读取安全相关的配置
+ */
 @Data
 @Component
 @ConfigurationProperties(prefix = "app.security")
 public class SecurityProperties {
 
-    /** 公开访问路径配置 */
-    private String[] publicPaths = {
-        "/login", "/logout",
-        "/actuator/health", "/actuator/info"
-    };
+    /**
+     * 公开访问路径配置
+     */
+    private String[] publicPaths = {"/login", "/logout", "/actuator/health", "/actuator/info"};
 
-    /** 管理员访问路径配置 */
+    /**
+     * 管理员访问路径配置
+     */
     private String[] adminPaths = {"/actuator/**"};
 
-    /** 会话管理配置 */
+    /**
+     * 会话管理配置
+     */
     private SessionProperties session = new SessionProperties();
 
-    /** 会话配置内部类 */
+    /**
+     * 会话配置内部类
+     */
     @Data
     public static class SessionProperties {
 
-        /** 是否启用会话固定保护 */
+        /**
+         * 是否启用会话固定保护
+         */
         private boolean sessionFixationProtection = true;
 
-        /** 最大会话数量（-1表示无限制） */
+        /**
+         * 最大会话数量（-1表示无限制）
+         */
         private int maximumSessions = 3;
 
-        /** 当达到最大会话数时是否阻止新登录 */
+        /**
+         * 当达到最大会话数时是否阻止新登录
+         */
         private boolean maxSessionsPreventsLogin;
     }
 }

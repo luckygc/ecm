@@ -18,7 +18,6 @@
 package github.luckygc.ecm;
 
 import github.luckygc.jakartadata.annotation.EnableDataRepositories;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

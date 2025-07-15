@@ -18,9 +18,7 @@
 package github.luckygc.ecm.common.domain.dto;
 
 import jakarta.data.page.Page;
-
 import java.util.List;
-
 import lombok.Data;
 
 @Data
