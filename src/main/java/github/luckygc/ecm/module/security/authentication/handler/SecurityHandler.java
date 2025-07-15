@@ -67,7 +67,6 @@ public class SecurityHandler implements AuthenticationFailureHandler,
 
     @SuppressWarnings("unchecked")
     public SecurityHandler(List<HttpMessageConverter<?>> converters) {
-
         this.messageConverter = (HttpMessageConverter<Object>) converters.stream()
                 .filter(c -> c instanceof MappingJackson2HttpMessageConverter)
                 .findFirst()
