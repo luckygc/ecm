@@ -15,21 +15,14 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm.common.support;
+package github.luckygc.ecm.util;
 
-import jakarta.data.Order;
-import jakarta.data.page.Page;
-import jakarta.data.page.PageRequest;
-import jakarta.data.repository.Delete;
-import jakarta.data.repository.Find;
+import java.util.function.Supplier;
 
-import org.hibernate.query.restriction.Restriction;
+public final class ExceptionsSuppliers {
+    private ExceptionsSuppliers() {}
 
-public interface DynamicRepository<T> {
-
-    @Find
-    Page<T> findAll(Restriction<T> restriction, PageRequest pageRequest, Order<T> sortBy);
-
-    @Delete
-    long deleteAll(Restriction<T> restriction);
+    public static Supplier<IllegalStateException> illegalState(String message) {
+        return () -> new IllegalStateException(message);
+    }
 }
