@@ -17,16 +17,15 @@
 
 package github.luckygc.ecm.module.security.captcha.repository;
 
-import github.luckygc.ecm.module.security.captcha.domain.entity.CapToken;
-import github.luckygc.ecm.module.security.captcha.domain.entity.ChallengeData;
+import github.luckygc.ecm.module.security.captcha.domain.entity.CapTokenEntity;
+import github.luckygc.ecm.module.security.captcha.domain.entity.ChallengeDataEntity;
 import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
-import jakarta.data.repository.Delete;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Insert;
 import jakarta.data.repository.Query;
 import jakarta.data.repository.Repository;
 import jakarta.validation.constraints.NotNull;
+import java.util.Optional;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
@@ -34,31 +33,23 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CapRepository {
 
     @Insert
-    void insertChallengeData(ChallengeData challengeData);
+    void insertChallengeData(ChallengeDataEntity challengeDataEntity);
 
     @Find
-    @Nullable
-    ChallengeData findChallengeData(@NotNull String token);
+    Optional<ChallengeDataEntity> findChallengeDataByToken(@NotNull String token);
 
     @Query("delete from ChallengeData where expires < :timeMillis")
     void removeExpiredChallengeData(long timeMillis);
 
-    @Delete
-    void deleteChallengeData(ChallengeData challengeData);
+    @Query("delete from ChallengeData where token = :token")
+    void deleteChallengeDataByToken(String token);
 
     @Insert
-    void insertCapToken(CapToken capToken);
+    void insertCapToken(CapTokenEntity capTokenEntity);
 
     @Find
-    @Nullable
-    CapToken findCapToken(@Nonnull String token);
+    Optional<CapTokenEntity> findCapTokenByToken(@Nonnull String token);
 
     @Query("delete from CapToken where expires < :timeMillis")
     void removeExpiredCapToken(long timeMillis);
-
-    default void cleanExpiredTokens() {
-        long currentTimeMillis = System.currentTimeMillis();
-        removeExpiredChallengeData(currentTimeMillis);
-        removeExpiredCapToken(currentTimeMillis);
-    }
 }

@@ -17,12 +17,18 @@
 
 package github.luckygc.ecm.config;
 
+import github.luckygc.cap.CapManager;
+import github.luckygc.cap.CapStore;
+import github.luckygc.cap.config.CapTokenConfig;
+import github.luckygc.cap.config.ChallengeConfig;
+import github.luckygc.cap.impl.CapManagerImpl;
+import github.luckygc.ecm.config.property.CapProperties;
 import github.luckygc.ecm.config.property.SecurityProperties;
 import github.luckygc.ecm.module.security.authentication.filter.UsernamePasswordCapAuthenticationFilter;
 import github.luckygc.ecm.module.security.authentication.handler.SecurityHandler;
-import github.luckygc.ecm.module.security.captcha.Cap;
 import github.luckygc.ecm.module.user.domain.enums.BuiltInRoleEnum;
 import java.util.List;
+import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -51,6 +57,29 @@ public class SecurityConfig {
 
     private final SecurityProperties securityProperties;
 
+    private final CapProperties capProperties;
+
+    private final CapStore capStore;
+
+    @Bean
+    public CapManager capManager() {
+        ChallengeConfig challengeConfig = new ChallengeConfig()
+                .setChallengeCount(capProperties.getChallengeCount())
+                .setChallengeSize(capProperties.getChallengeSize())
+                .setChallengeDifficulty(capProperties.getChallengeDifficulty())
+                .setChallengeExpireMs(capProperties.getChallengeExpireMs());
+
+        CapTokenConfig capTokenConfig = new CapTokenConfig();
+        capTokenConfig.setExpireMs(capProperties.getTokenExpireMs());
+
+        return new CapManagerImpl.Builder()
+                .locale(Locale.CHINESE)
+                .defaultChallengeConfig(challengeConfig)
+                .capTokenConfig(capTokenConfig)
+                .capStore(capStore)
+                .build();
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -72,9 +101,9 @@ public class SecurityConfig {
 
     @Bean
     public UsernamePasswordCapAuthenticationFilter customFormAuthenticationFilter(
-            AuthenticationManager authenticationManager, SecurityHandler securityHandler, Cap cap) {
+            AuthenticationManager authenticationManager, SecurityHandler securityHandler, CapManager capManager) {
 
-        var filter = new UsernamePasswordCapAuthenticationFilter(authenticationManager, cap);
+        var filter = new UsernamePasswordCapAuthenticationFilter(authenticationManager, capManager);
         filter.setAuthenticationSuccessHandler(securityHandler);
         filter.setAuthenticationFailureHandler(securityHandler);
         filter.setPostOnly(false);

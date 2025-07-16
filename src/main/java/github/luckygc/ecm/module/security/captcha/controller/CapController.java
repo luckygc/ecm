@@ -17,10 +17,10 @@
 
 package github.luckygc.ecm.module.security.captcha.controller;
 
-import github.luckygc.ecm.module.security.captcha.Cap;
-import github.luckygc.ecm.module.security.captcha.domain.dto.CapTokenDTO;
-import github.luckygc.ecm.module.security.captcha.domain.dto.ChallengeDataDTO;
-import github.luckygc.ecm.module.security.captcha.domain.dto.request.RedeemChallengeRequest;
+import github.luckygc.cap.CapManager;
+import github.luckygc.cap.model.ChallengeData;
+import github.luckygc.cap.model.RedeemChallengeRequest;
+import github.luckygc.cap.model.RedeemChallengeResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,15 +34,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/cap")
 public class CapController {
 
-    private final Cap cap;
+    private final CapManager capManager;
 
     @PostMapping("challenge")
-    public ChallengeDataDTO createChallenge() {
-        return cap.createChallenge();
+    public ChallengeData createChallenge() {
+        return capManager.createChallenge();
     }
 
     @PostMapping("redeem")
-    public CapTokenDTO redeemChallenge(@RequestBody RedeemChallengeRequest redeemChallengeRequest) {
-        return cap.redeemChallenge(redeemChallengeRequest);
+    public RedeemChallengeResponse redeemChallenge(@RequestBody RedeemChallengeRequest redeemChallengeRequest) {
+        return capManager.redeemChallenge(redeemChallengeRequest);
     }
 }

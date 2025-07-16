@@ -17,7 +17,7 @@
 
 package github.luckygc.ecm.module.security.authentication.filter;
 
-import github.luckygc.ecm.module.security.captcha.Cap;
+import github.luckygc.cap.CapManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -36,12 +36,11 @@ public class UsernamePasswordCapAuthenticationFilter extends UsernamePasswordAut
 
     private static final String CAP_TOKEN_PARAMETER = "capToken";
 
-    private final Cap cap;
+    private final CapManager capManager;
 
-    public UsernamePasswordCapAuthenticationFilter(
-            AuthenticationManager authenticationManager, Cap cap) {
+    public UsernamePasswordCapAuthenticationFilter(AuthenticationManager authenticationManager, CapManager capManager) {
         super(authenticationManager);
-        this.cap = cap;
+        this.capManager = capManager;
     }
 
     @Override
@@ -55,7 +54,7 @@ public class UsernamePasswordCapAuthenticationFilter extends UsernamePasswordAut
         }
 
         try {
-            if (!cap.validateCapToken(capToken)) {
+            if (!capManager.validateCapToken(capToken)) {
                 throw new AuthenticationServiceException("人机认证失败，请重试");
             }
         } catch (IllegalArgumentException e) {

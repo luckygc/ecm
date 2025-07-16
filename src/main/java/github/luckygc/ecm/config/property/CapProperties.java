@@ -15,13 +15,39 @@
  * limitations under the License.
  */
 
-package github.luckygc.ecm.module.security.captcha.domain;
+package github.luckygc.ecm.config.property;
 
-/**
- * @param c Number of challenges
- * @param s Size of each challenge
- * @param d Difficulty level
- */
-public record Challenge(int c, int s, int d) {
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+@Data
+@Component
+@ConfigurationProperties(prefix = "app.security.cap")
+public class CapProperties {
+
+    /**
+     * 生成的挑战数量
+     */
+    private int challengeCount = 50;
+
+    /**
+     * 每条挑战的长度
+     */
+    private int challengeSize = 32;
+
+    /**
+     * 挑战难度
+     */
+    private int challengeDifficulty = 4;
+
+    /**
+     * 挑战过期时间，秒
+     */
+    private long challengeExpireMs = 5 * 60 * 1000;
+
+    /**
+     * token过期时间，秒
+     */
+    private long tokenExpireMs = 2 * 60 * 1000;
 }

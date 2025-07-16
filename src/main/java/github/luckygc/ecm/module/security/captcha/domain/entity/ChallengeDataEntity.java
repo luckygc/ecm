@@ -17,7 +17,9 @@
 
 package github.luckygc.ecm.module.security.captcha.domain.entity;
 
+import github.luckygc.cap.model.Challenge;
 import github.luckygc.ecm.common.annotation.hibernate.SnowflakeId;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
@@ -30,21 +32,24 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.type.SqlTypes;
 
-@Table(name = "cap_token",
+@Table(
+        name = "cap_challenge_data",
         indexes = {
-                @Index(name = "uk_cap_token_token", columnList = "token", unique = true),
-                @Index(name = "idx_cap_token_expires", columnList = "expires")
+                @Index(name = "uk_cap_challenge_data_token", columnList = "token", unique = true),
+                @Index(name = "idx_cap_challenge_data_expires", columnList = "expires")
         })
-@Entity
+@Entity(name = "ChallengeData")
+@Accessors(chain = true)
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Accessors(chain = true)
-public class CapToken {
+public class ChallengeDataEntity {
 
     @Id
     @SnowflakeId
@@ -55,7 +60,13 @@ public class CapToken {
 
     @UpdateTimestamp
     private LocalDateTime updateTime;
+
+    @Column(length = 50, comment = "挑战唯一标识")
     private String token;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    private Challenge challenge;
+
     private Long expires;
 
     @Override
@@ -75,8 +86,8 @@ public class CapToken {
         if (thisEffectiveClass != oEffectiveClass) {
             return false;
         }
-        CapToken capToken = (CapToken) o;
-        return getId() != null && Objects.equals(getId(), capToken.getId());
+        ChallengeDataEntity that = (ChallengeDataEntity) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override
