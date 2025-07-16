@@ -81,6 +81,7 @@
 		<awssdk-s3.version>2.31.54</awssdk-s3.version>
 		<lombok.version>1.18.36</lombok.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
+        <cap-server.version>2.0.0</cap-server.version>
 	</properties>
 
 	<dependencies>
@@ -146,6 +147,11 @@
 			<artifactId>s3</artifactId>
 			<version>${awssdk-s3.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>com.github.luckygc</groupId>
+            <artifactId>cap-server</artifactId>
+            <version>${cap-server.version}</version>
+        </dependency>
 		
 		<dependency>
 			<groupId>org.jspecify</groupId>
